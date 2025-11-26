@@ -1,0 +1,14 @@
+---
+- # ====== Application Item: APP_SP_ACCOUNT_ID_ITEM ============
+  id: 31159953045246680
+  identification: 
+    name: APP_SP_ACCOUNT_ID_ITEM
+    scope: Application
+
+  security: 
+    session-state-protection: Unrestricted
+    escape-special-characters: true
+
+  subscription: 
+    version-number: 45775112557474
+
