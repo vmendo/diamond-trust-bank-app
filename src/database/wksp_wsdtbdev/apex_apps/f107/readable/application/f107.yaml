@@ -1,0 +1,260 @@
+---
+# ====== Application: Diamond Trust Bank - Bank Side =========
+id: 107
+identification: 
+  name: Diamond Trust Bank - Bank Side
+  alias: BANK-SIDE-DIAMOND-TRUST-BANK
+  version: Release 1.0
+
+row-search: 
+  tokenize: true
+  text-query-function: None
+
+availability: 
+  status: Available with Developer Toolbar
+  build-status: Run and Build Application
+
+error-handling: 
+  default-display-location: Inline with Field and in Notification
+
+report-printing: 
+  type: Use Instance Settings
+
+advanced: 
+  friendly-urls: true
+  allow-feedback: true
+  logging: true
+  debugging: false
+  compatibility-mode: 24.2
+  accessible-read-only-items: true
+  pass-ecid: Y
+
+authentication: 
+  public-user: APEX_PUBLIC_USER
+  authentication-scheme: Oracle APEX Accounts # 31057808558538795
+
+authorization: 
+  source-for-role-or-group-schemes: Access Control User Role Assignments
+
+session-management: 
+  rejoin-sessions: Disabled
+
+session-state-protection: 
+  enabled: true
+
+security: 
+  deep-linking: Disabled
+  browser-cache: Disabled
+  embed-in-frames: Deny
+  referrer-policy: strict-origin
+  html-escaping-mode: Extended
+
+database-session: 
+  parsing-schema: WKSP_WSDTBDEV
+
+globalization: 
+  primary-language: English (en)
+  document-direction: Language Default
+  language-derived-from: Application Primary Language
+  automatic-time-zone: false
+  automatic-csv-encoding: true
+
+application-format-masks: 
+  date: DS
+  timestamp: DS
+  timestamp-time-zone: DS
+
+character-value-comparison: 
+  behavior: Database session NLS setting (default)
+
+logo: 
+  type: Image and Text
+  image-url: '#APP_FILES#icons/app-icon-512.png'
+  text: Bank Side Diamond Trust Bank
+
+progressive-web-app: 
+  enable: true
+  installable: false
+  display: Standalone
+  screen-orientation: Any
+  ios-status-bar-style: Default
+  enable-push-notifications: false
+
+navigation: 
+  home-url: 
+    url: 'f?p=&APP_ID.:6:&APP_SESSION.::&DEBUG.:::'
+    page: 6 # Master Page Service Providers
+
+  login-url: 
+    url: 'f?p=&APP_ID.:LOGIN:&APP_SESSION.::&DEBUG.:::'
+    page: LOGIN
+
+navigation-menu: 
+  list-template: Side Navigation Menu
+  template-options: 
+  - '#DEFAULT#'
+  - js-defaultCollapsed
+  - js-navCollapsed--hidden
+  - t-TreeNav--styleA
+  list-position: Side
+  list: Navigation Menu # 31058632927538786
+
+navigation-bar: 
+  implementation: List
+  list: Navigation Bar # 31059764448538748
+  list-template: Navigation Bar
+  template-options: 
+  - '#DEFAULT#'
+
+javascript: 
+  include-jquery-migrate: false
+
+attributes: 
+  theme: Universal Theme # 42
+  global-page: 0
+  enable-end-users-to-choose-theme-style: true
+  add-"built-with-apex"-to-footer: false
+  auto-dismiss-success-messages: false
+
+subscription: 
+  version-number: 45781986660785
+
+substitutions: 
+- # ====== Substitution: APP_NAME ==============================
+  id: 1
+  identification: 
+    name: APP_NAME
+
+  value: 
+    static-value: Bank Side Diamond Trust Bank
+
+component-settings: 
+- # ====== Component Setting: NATIVE_DISPLAY_SELECTOR ==========
+  id: 31053371880538814
+  identification: 
+    name: NATIVE_DISPLAY_SELECTOR
+    type: Region
+
+  subscription: 
+    version-number: 45774261902018
+
+- # ====== Component Setting: NATIVE_ADFBC =====================
+  id: 31053606687538813
+  identification: 
+    name: NATIVE_ADFBC
+    type: REST Data Source
+
+  subscription: 
+    version-number: 45774261902021
+
+- # ====== Component Setting: NATIVE_DATE_PICKER_APEX ==========
+  id: 31053906016538812
+  identification: 
+    name: NATIVE_DATE_PICKER_APEX
+    type: Item
+
+  subscription: 
+    version-number: 45774261902027
+
+- # ====== Component Setting: NATIVE_SELECT_MANY ===============
+  id: 31054245900538811
+  identification: 
+    name: NATIVE_SELECT_MANY
+    type: Item
+
+  subscription: 
+    version-number: 45774261902027
+
+- # ====== Component Setting: NATIVE_MAP_REGION ================
+  id: 31054508655538810
+  identification: 
+    name: NATIVE_MAP_REGION
+    type: Region
+
+  subscription: 
+    version-number: 45774261902036
+
+- # ====== Component Setting: NATIVE_GEOCODING =================
+  id: 31054800774538807
+  identification: 
+    name: NATIVE_GEOCODING
+    type: Process
+
+  settings: 
+    attribute-1: RELAX_HOUSE_NUMBER
+
+  subscription: 
+    version-number: 45774261902046
+
+- # ====== Component Setting: NATIVE_COLOR_PICKER ==============
+  id: 31055157539538806
+  identification: 
+    name: NATIVE_COLOR_PICKER
+    type: Item
+
+  subscription: 
+    version-number: 45774261902052
+
+- # ====== Component Setting: NATIVE_STAR_RATING ===============
+  id: 31055447850538805
+  identification: 
+    name: NATIVE_STAR_RATING
+    type: Item
+
+  subscription: 
+    version-number: 45774261902060
+
+- # ====== Component Setting: NATIVE_GEOCODED_ADDRESS ==========
+  id: 31055687187538804
+  identification: 
+    name: NATIVE_GEOCODED_ADDRESS
+    type: Item
+
+  subscription: 
+    version-number: 45774261902068
+
+- # ====== Component Setting: NATIVE_IR ========================
+  id: 31056014114538803
+  identification: 
+    name: NATIVE_IR
+    type: Region
+
+  subscription: 
+    version-number: 45774261902077
+
+- # ====== Component Setting: NATIVE_OPEN_AI_ASSISTANT =========
+  id: 31056370264538802
+  identification: 
+    name: NATIVE_OPEN_AI_ASSISTANT
+    type: Dynamic Action
+
+  subscription: 
+    version-number: 45774261902080
+
+- # ====== Component Setting: NATIVE_BOSS ======================
+  id: 31056616102538801
+  identification: 
+    name: NATIVE_BOSS
+    type: REST Data Source
+
+  subscription: 
+    version-number: 45774261902084
+
+- # ====== Component Setting: NATIVE_SINGLE_CHECKBOX ===========
+  id: 31056949726538800
+  identification: 
+    name: NATIVE_SINGLE_CHECKBOX
+    type: Item
+
+  subscription: 
+    version-number: 45774261902091
+
+- # ====== Component Setting: NATIVE_YES_NO ====================
+  id: 31057203636538799
+  identification: 
+    name: NATIVE_YES_NO
+    type: Item
+
+  subscription: 
+    version-number: 45774261902095
+
