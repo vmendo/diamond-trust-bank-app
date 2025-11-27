@@ -1,0 +1,21 @@
+---
+- # ====== List of Values: SP_ACCOUNTS.EMAIL ===================
+  id: 31077670717474644
+  identification: 
+    name: SP_ACCOUNTS.EMAIL
+
+  subscription: 
+    version-number: 45774287579080
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: SP_ACCOUNTS
+
+  column-mapping: 
+    return: ID
+    display: EMAIL
+    default-sort: EMAIL
+    sort-direction: Ascending (Nulls Last)
+
