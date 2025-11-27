@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+<include file="wksp_wsdtbdev/tables/sp_accounts.sql" relativeToChangelogFile="true"/>
+<include file="wksp_wsdtbdev/tables/sp_account_details.sql" relativeToChangelogFile="true"/>
+<include file="wksp_wsdtbdev/tables/sp_account_documents.sql" relativeToChangelogFile="true"/>
+<include file="wksp_wsdtbdev/tables/sp_uploaded_files_type.sql" relativeToChangelogFile="true"/>
+<include file="wksp_wsdtbdev/triggers/sp_accounts_biu.sql" relativeToChangelogFile="true"/>
+<include file="wksp_wsdtbdev/triggers/sp_account_details_biu.sql" relativeToChangelogFile="true"/>
+<include file="wksp_wsdtbdev/triggers/sp_account_documents_biu.sql" relativeToChangelogFile="true"/>
+<include file="wksp_wsdtbdev/triggers/sp_uploaded_files_type_biu.sql" relativeToChangelogFile="true"/>
+<include file="wksp_wsdtbdev/tables/sp_account_comments.sql" relativeToChangelogFile="true"/>
+<include file="wksp_wsdtbdev/tables/sp_document_types.sql" relativeToChangelogFile="true"/>
+<include file="wksp_wsdtbdev/indexes/sp_account_details_a_indx_1.sql" relativeToChangelogFile="true"/>
+<include file="wksp_wsdtbdev/indexes/sp_account_documents_a_indx_1.sql" relativeToChangelogFile="true"/>
+<include file="wksp_wsdtbdev/indexes/sp_uploaded_files_type_indx_1.sql" relativeToChangelogFile="true"/>
+<include file="wksp_wsdtbdev/functions/generate_random_pwd.sql" relativeToChangelogFile="true"/>
+<include file="wksp_wsdtbdev/ref_constraints/sp_account_comments_fk.sql" relativeToChangelogFile="true"/>
+<include file="wksp_wsdtbdev/ref_constraints/sp_account_details_fk.sql" relativeToChangelogFile="true"/>
+<include file="wksp_wsdtbdev/ref_constraints/sp_account_documents_fk.sql" relativeToChangelogFile="true"/>
+<include file="wksp_wsdtbdev/ref_constraints/sp_uploaded_files_type_fk.sql" relativeToChangelogFile="true"/>
+</databaseChangeLog>
