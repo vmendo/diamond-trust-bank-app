@@ -1,0 +1,66 @@
+---
+- # ====== Application Item: APP_SP_ACCOUNT_APPROVED_ITEM ======
+  id: 8491749949229927
+  identification: 
+    name: APP_SP_ACCOUNT_APPROVED_ITEM
+    scope: Application
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    escape-special-characters: true
+
+  subscription: 
+    version-number: 45778224116327
+
+- # ====== Application Item: APP_SP_ACCOUNT_NAME_ITEM ==========
+  id: 10329286374614797
+  identification: 
+    name: APP_SP_ACCOUNT_NAME_ITEM
+    scope: Application
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    escape-special-characters: true
+
+  subscription: 
+    version-number: 45774233524939
+
+- # ====== Application Item: SETSPCONTACTEMAIL =================
+  id: 28388788980924394
+  identification: 
+    name: SETSPCONTACTEMAIL
+    scope: Application
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    escape-special-characters: true
+
+  subscription: 
+    version-number: 45696994196886
+
+- # ====== Application Item: APP_PWD_ITEM ======================
+  id: 47517155754118220
+  identification: 
+    name: APP_PWD_ITEM
+    scope: Application
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    escape-special-characters: true
+
+  subscription: 
+    version-number: 45685865104089
+
+- # ====== Application Item: APP_SP_ACCOUNT_ID_ITEM ============
+  id: 47587892115352610
+  identification: 
+    name: APP_SP_ACCOUNT_ID_ITEM
+    scope: Application
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    escape-special-characters: true
+
+  subscription: 
+    version-number: 45688684971494
+
