@@ -1,0 +1,2031 @@
+---
+# ====== Page: SP Account Details ============================
+id: 3
+identification: 
+  name: SP Account Details
+  alias: SP-ACCOUNT-DETAILS
+  title: SP Account Details
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Comments from DTB ===========================
+  id: 8509648115961943
+  identification: 
+    name: Comments from DTB
+    type: Classic Report
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: SP_ACCOUNT_COMMENTS
+    include-rowid-column: false
+    where-clause: 'account_id = :app_sp_account_id_item'
+
+  order-by: 
+    type: Static Value
+    order-by-clause: COMMENT_DATE DESC
+
+  layout: 
+    sequence: 50
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-side-condition: 
+    type: Rows returned
+    sql-query: 'select * from sp_account_comments where account_id = :app_sp_account_id_item'
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    layout: 
+      number-of-rows-type: Static Value
+      number-of-rows: 15
+
+    appearance: 
+      template-type: Theme
+      template: Standard
+      template-options: 
+      - '#DEFAULT#'
+      - t-Report--altRowsDefault
+      - t-Report--rowHighlight
+
+    pagination: 
+      type: Row Ranges X to Y (with next and previous links)
+      display-position: Bottom - Right
+      partial-page-refresh: true
+
+    performance: 
+      lazy-loading: false
+
+    break-formatting: 
+      break-columns: No Break
+
+    advanced: 
+      strip-html: false
+      sort-nulls: Last
+
+    heading: 
+      type: Custom Headings
+
+    download: 
+      csv-export-enabled: false
+
+    printing: 
+      enabled: false
+
+  columns: 
+  - # ====== Column: COMMENT_USERNAME ============================
+    id: 8508703113961934
+    identification: 
+      column-name: COMMENT_USERNAME
+      type: Plain Text
+
+    heading: 
+      heading: Comment Username
+      alignment: start
+
+    layout: 
+      sequence: 40
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: COMMENT_TEXT ================================
+    id: 8509226447961939
+    identification: 
+      column-name: COMMENT_TEXT
+      type: Plain Text
+
+    heading: 
+      heading: Comment Text
+      alignment: start
+
+    layout: 
+      sequence: 50
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: COMMENT_DATE ================================
+    id: 8509330687961940
+    identification: 
+      column-name: COMMENT_DATE
+      type: Plain Text
+
+    heading: 
+      heading: Comment Date
+      alignment: start
+
+    layout: 
+      sequence: 30
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    appearance: 
+      format-mask: 'DD-MON-YYYY HH:MIPM'
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: ACCOUNT_ID ==================================
+    id: 8509445274961941
+    identification: 
+      column-name: ACCOUNT_ID
+      type: Hidden
+
+    layout: 
+      sequence: 20
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: ID ==========================================
+    id: 8509575860961942
+    identification: 
+      column-name: ID
+      type: Hidden
+
+    layout: 
+      sequence: 10
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+- # ====== Region: SP Account Details &APP_SP_ACCOUNT_APPROVED_I
+  id: 47685350891518072
+  identification: 
+    name: SP Account Details &APP_SP_ACCOUNT_APPROVED_ITEM.
+    type: Classic Report
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: SP_ACCOUNT_DETAILS
+    include-rowid-column: false
+    where-clause: 'account_id = :app_sp_account_id_item'
+
+  order-by: 
+    type: None
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--noPadding
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    layout: 
+      number-of-rows-type: Static Value
+      number-of-rows: 50
+
+    appearance: 
+      template-type: Theme
+      template: Standard
+      template-options: 
+      - '#DEFAULT#'
+      - t-Report--stretch
+      - t-Report--staticRowColors
+      - t-Report--rowHighlight
+      - t-Report--inline
+      - t-Report--hideNoPagination
+
+    pagination: 
+      type: Row Ranges X to Y (with next and previous links)
+      display-position: Bottom - Right
+      partial-page-refresh: true
+
+    performance: 
+      lazy-loading: false
+      maximum-rows-to-process: 500
+
+    messages: 
+      when-no-data-found: no data found
+
+    break-formatting: 
+      break-columns: No Break
+
+    advanced: 
+      strip-html: false
+      sort-nulls: Last
+
+    heading: 
+      type: Custom Headings
+
+    download: 
+      csv-export-enabled: false
+
+    printing: 
+      enabled: false
+
+  columns: 
+  - # ====== Column: ID ==========================================
+    id: 47685713678518066
+    identification: 
+      column-name: ID
+      type: Link
+
+    heading: 
+      alignment: center
+
+    layout: 
+      sequence: 0
+      column-alignment: center
+
+    accessibility: 
+      value-identifies-row: false
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:4:&APP_SESSION.::&DEBUG.:RP:P4_ID:\#ID#\'
+        page: 4 # Manager SP Account Details
+        clear-cache: RP
+        values: 
+          p4_id: '#ID#'
+
+      link-text: <span role="img" aria-label="Edit" class="fa fa-edit" title="Edit"></span>
+
+    sorting: 
+      sortable: false
+
+    export-/-printing: 
+      include-in-export-/-print: false
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: ACCOUNT_ID ==================================
+    id: 47686087365518064
+    identification: 
+      column-name: ACCOUNT_ID
+      type: Hidden
+
+    layout: 
+      sequence: 2
+
+    sorting: 
+      default-sequence: 1
+      direction: Ascending
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: COMPANY_NAME ================================
+    id: 47686473320518063
+    identification: 
+      column-name: COMPANY_NAME
+      type: Plain Text
+
+    heading: 
+      heading: Company Name
+      alignment: start
+
+    layout: 
+      sequence: 3
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      default-sequence: 1
+      direction: Ascending
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: CONTACT_PERSON ==============================
+    id: 47686894392518061
+    identification: 
+      column-name: CONTACT_PERSON
+      type: Plain Text
+
+    heading: 
+      heading: Contact Person
+      alignment: start
+
+    layout: 
+      sequence: 4
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      default-sequence: 1
+      direction: Ascending
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: ADDRESS =====================================
+    id: 47687318409518060
+    identification: 
+      column-name: ADDRESS
+      type: Plain Text
+
+    heading: 
+      heading: Address
+      alignment: start
+
+    layout: 
+      sequence: 5
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      default-sequence: 1
+      direction: Ascending
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: PHONE =======================================
+    id: 47687703579518059
+    identification: 
+      column-name: PHONE
+      type: Plain Text
+
+    heading: 
+      heading: Phone
+      alignment: start
+
+    layout: 
+      sequence: 6
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      default-sequence: 1
+      direction: Ascending
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: EMAIL =======================================
+    id: 47688105866518057
+    identification: 
+      column-name: EMAIL
+      type: Plain Text
+
+    heading: 
+      heading: Email
+      alignment: start
+
+    layout: 
+      sequence: 7
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      default-sequence: 1
+      direction: Ascending
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: TAXPIN ======================================
+    id: 47688513007518056
+    identification: 
+      column-name: TAXPIN
+      type: Plain Text
+
+    heading: 
+      heading: Taxpin
+      alignment: start
+
+    layout: 
+      sequence: 8
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      default-sequence: 1
+      direction: Ascending
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: CREATED_ON ==================================
+    id: 47688869696518055
+    identification: 
+      column-name: CREATED_ON
+      type: Plain Text
+
+    heading: 
+      heading: Created On
+      alignment: start
+
+    layout: 
+      sequence: 9
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    appearance: 
+      format-mask: SINCE
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+    configuration: 
+      build-option: Commented Out # 66505052896849819
+
+  - # ====== Column: CREATED_BY ==================================
+    id: 47689340305518053
+    identification: 
+      column-name: CREATED_BY
+      type: Plain Text
+
+    heading: 
+      heading: Created By
+      alignment: start
+
+    layout: 
+      sequence: 10
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      default-sequence: 1
+      direction: Ascending
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+    configuration: 
+      build-option: Commented Out # 66505052896849819
+
+  - # ====== Column: UPDATED_ON ==================================
+    id: 47689754057518052
+    identification: 
+      column-name: UPDATED_ON
+      type: Plain Text
+
+    heading: 
+      heading: Updated On
+      alignment: start
+
+    layout: 
+      sequence: 11
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    appearance: 
+      format-mask: SINCE
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+    configuration: 
+      build-option: Commented Out # 66505052896849819
+
+  - # ====== Column: UPDATED_BY ==================================
+    id: 47690108251518051
+    identification: 
+      column-name: UPDATED_BY
+      type: Plain Text
+
+    heading: 
+      heading: Updated By
+      alignment: start
+
+    layout: 
+      sequence: 12
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      default-sequence: 1
+      direction: Ascending
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+    configuration: 
+      build-option: Commented Out # 66505052896849819
+
+  - # ====== Column: ROW_VERSION =================================
+    id: 47690476006518049
+    identification: 
+      column-name: ROW_VERSION
+      type: Plain Text
+
+    heading: 
+      heading: Row Version
+      alignment: end
+
+    layout: 
+      sequence: 13
+      column-alignment: end
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+    configuration: 
+      build-option: Commented Out # 66505052896849819
+
+- # ====== Region: Breadcrumb ==================================
+  id: 47692591831518041
+  identification: 
+    name: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 66505657645849813
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: Report On Uploaded Documents ================
+  id: 47783025112625629
+  identification: 
+    name: Report On Uploaded Documents
+    type: Classic Report
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select ID,
+             ACCOUNT_ID,
+             sys.dbms_lob.getlength(FILE_DATA) as download_link,
+             FILE_NAME,
+             CREATED_ON,
+             CREATED_BY,
+             UPDATED_ON,
+             UPDATED_BY,
+             ROW_VERSION,
+             MIME_TYPE,
+             DOCUMENT_TYPE
+        from SP_ACCOUNT_DOCUMENTS
+       where account_id=:app_sp_account_id_item
+
+  order-by: 
+    type: None
+
+  layout: 
+    sequence: 40
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-side-condition: 
+    type: Rows returned
+    sql-query: 'select * from sp_account_details where account_id = :app_sp_account_id_item'
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    layout: 
+      number-of-rows-type: Static Value
+      number-of-rows: 15
+
+    appearance: 
+      template-type: Theme
+      template: Standard
+      template-options: 
+      - '#DEFAULT#'
+      - t-Report--altRowsDefault
+      - t-Report--rowHighlight
+
+    pagination: 
+      type: Row Ranges X to Y (with next and previous links)
+      display-position: Bottom - Right
+      partial-page-refresh: true
+
+    performance: 
+      lazy-loading: false
+
+    break-formatting: 
+      break-columns: No Break
+
+    advanced: 
+      strip-html: false
+      sort-nulls: Last
+
+    heading: 
+      type: Custom Headings
+
+    download: 
+      csv-export-enabled: false
+
+    printing: 
+      enabled: false
+
+  columns: 
+  - # ====== Column: ID ==========================================
+    id: 47783070602625630
+    identification: 
+      column-name: ID
+      type: Link
+
+    heading: 
+      heading: Id
+      alignment: end
+
+    layout: 
+      sequence: 10
+      column-alignment: end
+
+    accessibility: 
+      value-identifies-row: false
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:21:&SESSION.::&DEBUG.::P21_ID:#ID#'
+        page: 21 # updatedocfile
+        values: 
+          p21_id: '#ID#'
+
+      link-text: <span role="img" aria-label="Edit" class="fa fa-edit" title="Edit"></span>
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: ACCOUNT_ID ==================================
+    id: 47783205331625631
+    identification: 
+      column-name: ACCOUNT_ID
+      type: Plain Text
+
+    heading: 
+      heading: Account Id
+      alignment: end
+
+    layout: 
+      sequence: 20
+      column-alignment: end
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+    configuration: 
+      build-option: Commented Out # 66505052896849819
+
+  - # ====== Column: CREATED_ON ==================================
+    id: 47783483071625634
+    identification: 
+      column-name: CREATED_ON
+      type: Plain Text
+
+    heading: 
+      heading: Created On
+      alignment: start
+
+    layout: 
+      sequence: 150
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    appearance: 
+      format-mask: 'DD-MON-YYYY HH:MIPM'
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: CREATED_BY ==================================
+    id: 47783660832625635
+    identification: 
+      column-name: CREATED_BY
+      type: Plain Text
+
+    heading: 
+      heading: Created By
+      alignment: start
+
+    layout: 
+      sequence: 160
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+    configuration: 
+      build-option: Commented Out # 66505052896849819
+
+  - # ====== Column: UPDATED_ON ==================================
+    id: 47783720301625636
+    identification: 
+      column-name: UPDATED_ON
+      type: Plain Text
+
+    heading: 
+      heading: Updated On
+      alignment: start
+
+    layout: 
+      sequence: 170
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+    configuration: 
+      build-option: Commented Out # 66505052896849819
+
+  - # ====== Column: UPDATED_BY ==================================
+    id: 47783827005625637
+    identification: 
+      column-name: UPDATED_BY
+      type: Plain Text
+
+    heading: 
+      heading: Updated By
+      alignment: start
+
+    layout: 
+      sequence: 180
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+    configuration: 
+      build-option: Commented Out # 66505052896849819
+
+  - # ====== Column: ROW_VERSION =================================
+    id: 47783946367625638
+    identification: 
+      column-name: ROW_VERSION
+      type: Plain Text
+
+    heading: 
+      heading: Row Version
+      alignment: end
+
+    layout: 
+      sequence: 190
+      column-alignment: end
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+    configuration: 
+      build-option: Commented Out # 66505052896849819
+
+  - # ====== Column: MIME_TYPE ===================================
+    id: 47783976748625639
+    identification: 
+      column-name: MIME_TYPE
+      type: Hidden
+
+    layout: 
+      sequence: 110
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: DOCUMENT_TYPE ===============================
+    id: 47784073002625640
+    identification: 
+      column-name: DOCUMENT_TYPE
+      type: Plain Text
+
+    heading: 
+      heading: Document Type
+      alignment: start
+
+    layout: 
+      sequence: 140
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: DOWNLOAD_LINK ===============================
+    id: 47784265536625641
+    identification: 
+      column-name: DOWNLOAD_LINK
+      type: Download BLOB
+
+    heading: 
+      heading: Download Link
+      alignment: end
+
+    layout: 
+      sequence: 130
+      column-alignment: end
+
+    accessibility: 
+      value-identifies-row: false
+
+    appearance: 
+      view-file-as: Attachment
+
+    blob-attributes: 
+      table-owner: Parsing Schema
+      table-name: SP_ACCOUNT_DOCUMENTS
+      blob-column: FILE_DATA
+      primary-key-column-1: ID
+      mime-type-column: MIME_TYPE
+      filename-column: FILE_NAME
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+  - # ====== Column: FILE_NAME ===================================
+    id: 47784455378625643
+    identification: 
+      column-name: FILE_NAME
+      type: Plain Text
+
+    heading: 
+      heading: File Name
+      alignment: start
+
+    layout: 
+      sequence: 100
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+- # ====== Region: UploadedDocTypes ============================
+  id: 47929787298718697
+  identification: 
+    name: UploadedDocTypes
+    type: Static Content
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-side-condition: 
+    type: Rows returned
+    sql-query: 'select * from sp_account_details where account_id = :app_sp_account_id_item'
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+page-items: 
+- # ====== Page Item: P3_CRC ===================================
+  id: 28144446213858102
+  identification: 
+    name: P3_CRC
+    type: Checkbox
+
+  label: 
+    label: Company Registration Certificate
+    alignment: Left
+
+  settings: 
+    use-defaults: false
+    checked-value: Y
+    unchecked-value: N
+
+  layout: 
+    sequence: 10
+    region: UploadedDocTypes # 47929787298718697
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  read-only: 
+    type: Always
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P3_PC ====================================
+  id: 28312789127091554
+  identification: 
+    name: P3_PC
+    type: Checkbox
+
+  label: 
+    label: PIN Certificate
+    alignment: Left
+
+  settings: 
+    use-defaults: false
+    checked-value: Y
+    unchecked-value: N
+
+  layout: 
+    sequence: 30
+    region: UploadedDocTypes # 47929787298718697
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  read-only: 
+    type: Always
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P3_TC ====================================
+  id: 28312928144091555
+  identification: 
+    name: P3_TC
+    type: Checkbox
+
+  label: 
+    label: Tax Certificate
+    alignment: Left
+
+  settings: 
+    use-defaults: false
+    checked-value: Y
+    unchecked-value: N
+
+  layout: 
+    sequence: 40
+    region: UploadedDocTypes # 47929787298718697
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  read-only: 
+    type: Always
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P3_PII ===================================
+  id: 28312982438091556
+  identification: 
+    name: P3_PII
+    type: Checkbox
+
+  label: 
+    label: Professional Indemnity Insurance
+    alignment: Left
+
+  settings: 
+    use-defaults: false
+    checked-value: Y
+    unchecked-value: N
+
+  layout: 
+    sequence: 20
+    region: UploadedDocTypes # 47929787298718697
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  read-only: 
+    type: Always
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P3_BD ====================================
+  id: 28313135284091557
+  identification: 
+    name: P3_BD
+    type: Checkbox
+
+  label: 
+    label: Bank Details
+    alignment: Left
+
+  settings: 
+    use-defaults: false
+    checked-value: Y
+    unchecked-value: N
+
+  layout: 
+    sequence: 60
+    region: UploadedDocTypes # 47929787298718697
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  read-only: 
+    type: Always
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P3_OTHER =================================
+  id: 28313235264091558
+  identification: 
+    name: P3_OTHER
+    type: Checkbox
+
+  label: 
+    label: Other
+    alignment: Left
+
+  settings: 
+    use-defaults: false
+    checked-value: Y
+    unchecked-value: N
+
+  layout: 
+    sequence: 70
+    region: UploadedDocTypes # 47929787298718697
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  read-only: 
+    type: Always
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: DownloadAllDocuments ========================
+  id: 9647515883706621
+  identification: 
+    button-name: DownloadAllDocuments
+    label: Download All Documents
+
+  layout: 
+    sequence: 20
+    region: Report On Uploaded Documents # 47783025112625629
+    slot: CLOSE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+- # ====== Button: SUBMIT_SP_REQUEST ===========================
+  id: 28315668151091582
+  identification: 
+    button-name: SUBMIT_SP_REQUEST
+    label: Submit SP Request
+
+  layout: 
+    sequence: 20
+    region: SP Account Details &APP_SP_ACCOUNT_APPROVED_ITEM. # 47685350891518072
+    slot: CLOSE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+
+  server-side-condition: 
+    type: Function Body
+    language: PL/SQL
+    pl/sql-function-body: |
+      declare
+          v1 number;
+      begin
+      /*
+      select 1 into v1 from sp_account_documents where account_id=:app_sp_account_id_item;
+      select 1 into v1 from sp_account_details where account_id = :APP_SP_ACCOUNT_ID_ITEM;
+      */
+          select 1
+          into v1
+          from sp_accounts
+          where id=:app_sp_account_id_item
+          and ACCOUNT_WAS_SUBMITTED = 'N';
+      
+      
+          select 1 
+          into v1 
+          from sp_account_documents spadoc join sp_account_details spadet using (account_id) 
+          where account_id=:app_sp_account_id_item;
+          return(true);
+      
+      exception
+          when no_data_found then
+          return(false);
+          when too_many_rows then
+          return (true);
+      end;
+
+- # ====== Button: CREATE ======================================
+  id: 47690999756518047
+  identification: 
+    button-name: CREATE
+    label: Provide Service Provider Details
+
+  layout: 
+    sequence: 10
+    region: SP Account Details &APP_SP_ACCOUNT_APPROVED_ITEM. # 47685350891518072
+    slot: CLOSE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:4:&APP_SESSION.::&DEBUG.:4::'
+      page: 4 # Manager SP Account Details
+      clear-cache: 4
+
+    warn-on-unsaved-changes: Do Not Check
+
+  server-side-condition: 
+    type: No Rows returned
+    sql-query: 'select 1 from sp_account_details where account_id = :APP_SP_ACCOUNT_ID_ITEM'
+
+- # ====== Button: UploadDocuments =============================
+  id: 47784296737625642
+  identification: 
+    button-name: UploadDocuments
+    label: Upload Documents
+
+  layout: 
+    sequence: 10
+    region: Report On Uploaded Documents # 47783025112625629
+    slot: CLOSE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:5:&SESSION.::&DEBUG.:5::'
+      page: 5 # Upload Documents
+      clear-cache: 5
+
+    warn-on-unsaved-changes: Do Not Check
+
+dynamic-actions: 
+- # ====== Dynamic Action: downloadalldocs_da ==================
+  id: 9647670628706622
+  identification: 
+    name: downloadalldocs_da
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: DownloadAllDocuments # 9647515883706621
+
+  actions: 
+  - # ====== Action: Download ====================================
+    id: 9647760775706623
+    identification: 
+      action: Download
+
+    settings: 
+      multiple-files: true
+      filename: uploaded_documents.zip
+
+    source: 
+      sql-query: |
+        SELECT file_data, file_name
+        FROM sp_account_documents
+        where account_id=:app_sp_account_id_item
+
+    execution: 
+      sequence: 10
+      event: downloadalldocs_da # 9647670628706622
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+computations: 
+- # ====== Computation: APP_SP_ACCOUNT_APPROVED_ITEM ===========
+  id: 8508886601961936
+  identification: 
+    item-name: APP_SP_ACCOUNT_APPROVED_ITEM
+
+  execution: 
+    sequence: 20
+    point: Before Header
+
+  computation: 
+    type: SQL Query (return single value)
+    sql-query: |
+      select 
+      case account_is_approved 
+      when 'N' then '(Initial Info Needed)'
+      when 'P' then '(Pending Review)'
+      when 'Y' then '(Approved)'
+      when 'R' then '(Rejected)'
+      end case
+      from sp_accounts
+      where id=:app_sp_account_id_item;
+
+- # ====== Computation: SETSPCONTACTEMAIL ======================
+  id: 28316116785091587
+  identification: 
+    item-name: SETSPCONTACTEMAIL
+
+  execution: 
+    sequence: 10
+    point: Before Header
+
+  computation: 
+    type: SQL Query (return single value)
+    sql-query: |
+      select email from sp_account_details
+      where account_id=:app_sp_account_id_item;
+
+processes: 
+- # ====== Process: setaccountisapprovedtoP ====================
+  id: 8509026078961937
+  identification: 
+    name: setaccountisapprovedtoP
+    type: Execute Code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      update sp_accounts set ACCOUNT_IS_APPROVED='P'
+      where id=:app_sp_account_id_item;
+
+  execution: 
+    sequence: 30
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+- # ====== Process: insertfirstcomment =========================
+  id: 8509155206961938
+  identification: 
+    name: insertfirstcomment
+    type: Execute Code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      insert into sp_account_comments (account_id,comment_date,comment_text,comment_username)
+      values (:app_sp_account_id_item,sysdate,'Your account is pending in approval review','SYSTEM');
+
+  execution: 
+    sequence: 40
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+- # ====== Process: SendSubmissionEmail ========================
+  id: 28315757535091583
+  identification: 
+    name: SendSubmissionEmail
+    type: Send E-Mail
+    execution-chain: None
+
+  settings: 
+    from: '&APP_EMAIL.'
+    to: '&SETSPCONTACTEMAIL.'
+    subject: Your SP submission is under review!!!
+    body-plain-text: Your request is being reviewed by the SP account team!!!
+    send-immediately: true
+
+  execution: 
+    sequence: 10
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+- # ====== Process: setsubmittedcolumntoY ======================
+  id: 28315993513091586
+  identification: 
+    name: setsubmittedcolumntoY
+    type: Execute Code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      update sp_accounts set ACCOUNT_WAS_SUBMITTED='Y'
+      where id=:app_sp_account_id_item;
+
+  execution: 
+    sequence: 20
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+- # ====== Process: Set Checkboxes =============================
+  id: 28404616566384844
+  identification: 
+    name: Set Checkboxes
+    type: Execute Code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      --resetting checkboxes at page rendering
+      :p3_CRC := 'N';
+      :p3_PC := 'N';
+      :p3_TC := 'N';
+      :p3_PII := 'N';
+      :p3_BD := 'N';
+      :p3_OTHER := 'N';
+      
+      -- setting checkboxes
+      
+      for c in (select distinct document_type from sp_account_documents where account_id = :app_sp_account_id_item) loop
+      
+          case c.document_type 
+              when 'CRC'  then :p3_CRC := 'Y';
+              when 'PC'   then :p3_PC := 'Y';
+              when 'TC'   then :p3_TC := 'Y';
+              when 'PII'  then :p3_PII := 'Y';
+              when 'BD'   then :p3_BD := 'Y';
+              when 'OTH'  then :p3_OTHER := 'Y';
+              end case;
+      
+      end loop;
+
+  execution: 
+    sequence: 20
+    point: Before Header
+    run-process: Once Per Page Visit (default)
+
