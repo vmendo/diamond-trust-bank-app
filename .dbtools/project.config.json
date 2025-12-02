@@ -5,7 +5,7 @@
     "version" : "25.3.2.0"
   },
   "schemas" : [ "WKSP_WSDTBDEV" ],
-  "lastReleaseVersion" : "",
+  "lastReleaseVersion" : "1.0",
   "export" : {
     "format" : {
       "enable" : true
