@@ -1,0 +1,83 @@
+---
+- # ====== Authentication: customauthN =========================
+  id: 47491150006182692
+  identification: 
+    name: customauthN
+
+  subscription: 
+    version-number: 45778077873520
+
+  settings: 
+    type: Custom
+    authentication-function-name: checkuser
+    enable-legacy-authentication-attributes: false
+
+  source: 
+    pl/sql-code: |
+      function checkuser
+      (p_username varchar2,p_password varchar2)
+      return boolean
+      is
+          --v1 number;
+          v_locked_account varchar2(1);
+          v_expired        varchar2(1);
+      begin
+          select expired,locked_account 
+          into v_expired,v_locked_account 
+          from sp_accounts 
+          where sp_username=upper(p_username) and password=p_password;
+          
+          if v_locked_account = 'Y' then
+              --raise_application_error(-20003,'Account has been locked! Please contact admin!');
+              return false;
+          else
+              if v_expired = 'Y' then
+                  --raise_application_error(-20004,'Password Expired! Change Password!');
+                  return false;
+              end if;
+          end if;
+      
+          return true;
+      
+          --select 1 into v1 from sp_accounts where sp_username=upper(p_username) and password=p_password and expired='N';
+          --return true;
+      
+      exception
+          when no_data_found then
+              raise_application_error(-20002,'username and/or password combination doesn''t exists');
+              return false;
+      end;
+          
+
+  session-not-valid: 
+    redirect-to: Login Page
+
+  login-processing: 
+    switch-in-session: false
+
+  real-application-security: 
+    ras-mode: Disabled
+
+- # ====== Authentication: Oracle APEX Accounts ================
+  id: 66505385955849817
+  identification: 
+    name: Oracle APEX Accounts
+
+  subscription: 
+    version-number: 45685251929029
+
+  settings: 
+    type: Oracle APEX Accounts
+
+  session-not-valid: 
+    redirect-to: Login Page
+
+  login-processing: 
+    switch-in-session: false
+
+  post-logout-url: 
+    post-logout-url: 'f?p=&APP_ID.:3'
+
+  real-application-security: 
+    ras-mode: Disabled
+

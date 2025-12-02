@@ -1,0 +1,341 @@
+---
+# ====== Page: Comments Page =================================
+id: 8
+identification: 
+  name: Comments Page
+  alias: COMMENTS-PAGE
+  title: Comments Page
+
+appearance: 
+  page-mode: Modal Dialog
+  dialog-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+dialog: 
+  chained: true
+  resizable: true
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Comments Page ===============================
+  id: 8488548616366669
+  identification: 
+    name: Comments Page
+    type: Comments
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: SP_ACCOUNT_COMMENTS
+    include-rowid-column: false
+    where-clause: 'account_id = :APP_SP_ACCOUNT_ID_ITEM'
+
+  order-by: 
+    type: Static Value
+    order-by-clause: COMMENT_DATE DESC
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Region
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      display: Multiple (Report)
+
+    settings: 
+      comment-text: COMMENT_TEXT
+      user-name: COMMENT_USERNAME
+      date: COMMENT_DATE
+      display-avatar: false
+      style: Chat (Speech Bubbles)
+      apply-theme-colors: false
+
+    row-selection: 
+      type: None
+
+    performance: 
+      lazy-loading: false
+
+    pagination: 
+      type: Page
+      entities-per-page: 15
+      show-total-count: false
+
+  columns: 
+  - # ====== Column: ID ==========================================
+    id: 8488980782366665
+    identification: 
+      name: ID
+
+    layout: 
+      sequence: 10
+
+    source: 
+      type: Database Column
+      database-column: ID
+      data-type: NUMBER
+      primary-key: true
+
+    accessibility: 
+      value-identifies-row: false
+
+    appearance: 
+      group: false
+
+  - # ====== Column: COMMENT_USERNAME ============================
+    id: 8518985541775464
+    identification: 
+      name: COMMENT_USERNAME
+
+    layout: 
+      sequence: 50
+
+    source: 
+      type: Database Column
+      database-column: COMMENT_USERNAME
+      data-type: VARCHAR2
+      primary-key: false
+
+    accessibility: 
+      value-identifies-row: false
+
+    appearance: 
+      group: false
+
+  - # ====== Column: COMMENT_TEXT ================================
+    id: 8519125372775465
+    identification: 
+      name: COMMENT_TEXT
+
+    layout: 
+      sequence: 40
+
+    source: 
+      type: Database Column
+      database-column: COMMENT_TEXT
+      data-type: VARCHAR2
+      primary-key: false
+
+    accessibility: 
+      value-identifies-row: false
+
+    appearance: 
+      group: false
+
+  - # ====== Column: COMMENT_DATE ================================
+    id: 8519214098775466
+    identification: 
+      name: COMMENT_DATE
+
+    layout: 
+      sequence: 30
+
+    source: 
+      type: Database Column
+      database-column: COMMENT_DATE
+      data-type: DATE
+      primary-key: false
+
+    accessibility: 
+      value-identifies-row: false
+
+    appearance: 
+      group: false
+
+  - # ====== Column: ACCOUNT_ID ==================================
+    id: 8519295919775467
+    identification: 
+      name: ACCOUNT_ID
+
+    layout: 
+      sequence: 20
+
+    source: 
+      type: Database Column
+      database-column: ACCOUNT_ID
+      data-type: NUMBER
+      primary-key: false
+
+    accessibility: 
+      value-identifies-row: false
+
+    appearance: 
+      group: false
+
+page-items: 
+- # ====== Page Item: P8_COMMENT ===============================
+  id: 8518479961775459
+  identification: 
+    name: P8_COMMENT
+    type: Text Field
+
+  label: 
+    label: Comment
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 10
+    region: Comments Page # 8488548616366669
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: AddComment ==================================
+  id: 8518292818775457
+  identification: 
+    button-name: AddComment
+    label: Add Comment
+
+  layout: 
+    sequence: 20
+    region: Comments Page # 8488548616366669
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--success
+    - t-Button--padBottom
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+
+processes: 
+- # ====== Process: InsertComment ==============================
+  id: 8518237438775456
+  identification: 
+    name: InsertComment
+    type: Execute Code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      insert into sp_account_comments (account_id, comment_date, comment_text, comment_username)
+      values (:app_sp_account_id_item, current_date, :p8_comment, upper('&APP_USER.'));
+
+  execution: 
+    sequence: 10
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+branches: 
+- # ====== Branch: Go To Page 8 ================================
+  id: 8509303051065337
+  identification: 
+    name: Go To Page 8
+
+  execution: 
+    sequence: 10
+    point: After Processing
+
+  behavior: 
+    type: Page or URL (Redirect)
+    target: 
+      url: 'f?p=&APP_ID.:8:&SESSION.::&DEBUG.:CR,8::&success_msg=#SUCCESS_MSG#'
+      page: 8 # Comments Page
+      clear-cache: CR,8
+

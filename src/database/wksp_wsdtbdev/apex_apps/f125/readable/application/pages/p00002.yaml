@@ -1,0 +1,417 @@
+---
+# ====== Page: RegistrationForm ==============================
+id: 2
+identification: 
+  name: RegistrationForm
+  alias: REGISTRATIONFORM
+  title: RegistrationForm
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Is Public
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-meta-tags: false
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: RegistrationRegion ==========================
+  id: 66119633645114917
+  identification: 
+    name: RegistrationRegion
+    title: Enter Registration Details
+    type: Static Content
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+page-items: 
+- # ====== Page Item: P2_EMAILADDRESS ==========================
+  id: 66119644994114918
+  identification: 
+    name: P2_EMAILADDRESS
+    type: Text Field
+
+  label: 
+    label: Email Address
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 20
+    region: RegistrationRegion # 66119633645114917
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  default: 
+    type: Static
+    static-value: christophe.de.backer.ocp@gmail.com
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P2_PHONE =================================
+  id: 66119782572114919
+  identification: 
+    name: P2_PHONE
+    type: Text Field
+
+  label: 
+    label: Phone N°
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 30
+    region: RegistrationRegion # 66119633645114917
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  default: 
+    type: Static
+    static-value: 111222333444
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P2_USERNAME ==============================
+  id: 66119924164114920
+  identification: 
+    name: P2_USERNAME
+    type: Text Field
+
+  label: 
+    label: UserName
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 10
+    region: RegistrationRegion # 66119633645114917
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: Cancel ======================================
+  id: 47540508428425110
+  identification: 
+    button-name: Cancel
+    label: Cancel
+
+  layout: 
+    sequence: 50
+    region: RegistrationRegion # 66119633645114917
+    slot: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: false
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:1:&SESSION.::&DEBUG.:::'
+      page: 1 # Home
+
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: Submit ======================================
+  id: 66119998187114921
+  identification: 
+    button-name: Submit
+    label: Submit
+
+  layout: 
+    sequence: 40
+    region: RegistrationRegion # 66119633645114917
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+
+processes: 
+- # ====== Process: CreateNewUser ==============================
+  id: 66120078792114922
+  identification: 
+    name: CreateNewUser
+    type: Execute Code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      DECLARE
+       
+          v1 number;
+          sp_account_exists exception;
+          pwdstring varchar2(255);
+      
+      BEGIN
+         --check if the username already exists and raise exception if user should exist.
+         select 1 into v1 from sp_accounts where sp_username = upper(:P2_USERNAME);
+         raise sp_account_exists;
+      
+      EXCEPTION
+      
+      when no_data_found then
+          -- no records returned, means username doesn't exist yet, so insert record and generate random password.
+          -- calling function generate_random_pwd to generate a 10 char random pwd.
+          :APP_PWD_ITEM := generate_random_pwd;
+          -- hashing random password
+          pwdstring := apex_util.get_hash(apex_t_varchar2(upper(:p2_username),:app_pwd_item),null);
+              -- user gets inserted and EXPIRED will be set to 'Y' via default value for EXPIRED column
+          insert into sp_accounts (sp_username,email,phone,password)
+          values (upper(:P2_USERNAME),:P2_EMAILADDRESS,:P2_PHONE,pwdstring);
+      
+      when sp_account_exists then
+          -- user-raised exception handling and customized message
+          raise_application_error(-20001,'upper(:P2_USERNAME)||'' is not a valid user account');
+      end;
+
+  execution: 
+    sequence: 10
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  success-message: 
+    success-message: User &P2_USERNAME. successfully created. Check your mail for initial password.
+
+  error: 
+    error-message: User &P2_USERNAME. already exists.
+    display-location: Inline in Notification
+
+- # ====== Process: Send Confirmation Email ====================
+  id: 66120232848114923
+  identification: 
+    name: Send Confirmation Email
+    type: Send E-Mail
+    execution-chain: None
+
+  settings: 
+    from: '&APP_EMAIL.'
+    to: '&P2_EMAILADDRESS.'
+    subject: New Account Created for &P2_USERNAME.
+    body-plain-text: |
+      Hello, &P2_USERNAME.
+      Your account has been successfully created.
+      Your temporary password is: &APP_PWD_ITEM.
+      Please note that you must CHANGE this password upon your initial login for security purposes.
+    body-html: |
+      <p>Hello, &P2_USERNAME. </p>
+      <p>Your account has been successfully created.</p>
+      <p>Your temporary password is: <b> &APP_PWD_ITEM. </b></p>
+      <p>Please note that you must <b> CHANGE </b> this password upon your initial login for security purposes.</p>
+    send-immediately: true
+
+  execution: 
+    sequence: 20
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+branches: 
+- # ====== Branch: Go To Page 1 ================================
+  id: 46939065849827214
+  identification: 
+    name: Go To Page 1
+
+  execution: 
+    sequence: 10
+    point: After Processing
+
+  behavior: 
+    type: Page or URL (Redirect)
+    target: 
+      url: 'f?p=&APP_ID.:1:&SESSION.::&DEBUG.:::&success_msg=#SUCCESS_MSG#'
+      page: 1 # Home
+

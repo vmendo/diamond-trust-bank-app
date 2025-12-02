@@ -1,0 +1,38 @@
+---
+- # ====== Breadcrumb: Breadcrumb ==============================
+  id: 31058140006538791
+  identification: 
+    name: Breadcrumb
+
+  entries: 
+  - # ====== Entry: Master Page Service Providers ================
+    id: 31099368142474536
+    identification: 
+      name: Master Page Service Providers
+      page-number: 6
+
+    execution: 
+      sequence: 10
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:6:&APP_SESSION.::&DEBUG.:::'
+        page: 6 # Master Page Service Providers
+
+  - # ====== Entry: Documents Service Provider ===================
+    id: 31100533793474528
+    identification: 
+      name: Documents Service Provider
+      page-number: 7
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Master Page Service Providers # 31099368142474536
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:7:&APP_SESSION.::&DEBUG.:::'
+        page: 7 # Documents Service Provider
+

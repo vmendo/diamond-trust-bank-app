@@ -1,0 +1,446 @@
+---
+# ====== Page: Change Password Page ==========================
+id: 9998
+identification: 
+  name: Change Password Page
+  alias: CHANGE-PASSWORD-PAGE
+  title: Change Password Page
+
+appearance: 
+  page-mode: Normal
+  page-template: Login
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: First item on page
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Is Public
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-meta-tags: false
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: ChangePassword ==============================
+  id: 46940276296827227
+  identification: 
+    name: ChangePassword
+    type: Static Content
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Login
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  image: 
+    file-url: '#APP_FILES#icons/app-icon-512.png'
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+page-items: 
+- # ====== Page Item: P9998_USERNAME ===========================
+  id: 46940380511827228
+  identification: 
+    name: P9998_USERNAME
+    type: Text Field
+
+  label: 
+    label: Username
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 10
+    region: ChangePassword # 46940276296827227
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P9998_OLD_PASSWORD =======================
+  id: 46940507930827229
+  identification: 
+    name: P9998_OLD_PASSWORD
+    type: Password
+
+  label: 
+    label: Old Password
+    alignment: Left
+
+  settings: 
+    submit-when-enter-pressed: true
+
+  layout: 
+    sequence: 20
+    region: ChangePassword # 46940276296827227
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P9998_NEW_PASSWORD =======================
+  id: 46940643075827230
+  identification: 
+    name: P9998_NEW_PASSWORD
+    type: Password
+
+  label: 
+    label: New Password
+    alignment: Left
+
+  settings: 
+    submit-when-enter-pressed: true
+
+  layout: 
+    sequence: 30
+    region: ChangePassword # 46940276296827227
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P9998_NEW_PASSWORD_CONFIRM ===============
+  id: 46940691123827231
+  identification: 
+    name: P9998_NEW_PASSWORD_CONFIRM
+    type: Password
+
+  label: 
+    label: New Password Confirm
+    alignment: Left
+
+  settings: 
+    submit-when-enter-pressed: true
+
+  layout: 
+    sequence: 40
+    region: ChangePassword # 46940276296827227
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: ChangePassword ==============================
+  id: 46940848481827232
+  identification: 
+    button-name: ChangePassword
+    label: Change Password
+
+  layout: 
+    sequence: 50
+    region: ChangePassword # 46940276296827227
+    slot: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--stretch
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: Cancel ======================================
+  id: 46940927271827233
+  identification: 
+    button-name: Cancel
+    label: Cancel
+
+  layout: 
+    sequence: 60
+    region: ChangePassword # 46940276296827227
+    slot: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--stretch
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:9999:&SESSION.::&DEBUG.:::'
+      page: 9999 # Login Page
+
+    warn-on-unsaved-changes: Do Not Check
+
+validations: 
+- # ====== Validation: CheckUsername ===========================
+  id: 46940966523827234
+  identification: 
+    name: CheckUsername
+
+  execution: 
+    sequence: 10
+
+  validation: 
+    type: Rows returned
+    sql-query: 'select 1 from sp_accounts where sp_username = upper(:P9998_USERNAME);'
+    always-execute: false
+
+  error: 
+    error-message: User &P9998_USERNAME. does not exist.
+    display-location: Inline with Field and in Notification
+    associated-item: P9998_USERNAME # 46940380511827228
+
+- # ====== Validation: CheckCurrentPassword ====================
+  id: 47510676881789089
+  identification: 
+    name: CheckCurrentPassword
+
+  execution: 
+    sequence: 20
+
+  validation: 
+    type: Rows returned
+    sql-query: |
+      select 1 
+      from sp_accounts 
+      where password = apex_util.get_hash(apex_t_varchar2(upper(:p9998_username),:P9998_OLD_PASSWORD),null);
+    always-execute: false
+
+  error: 
+    error-message: Old password not on records!!!
+    display-location: Inline with Field and in Notification
+    associated-item: P9998_OLD_PASSWORD # 46940507930827229
+
+- # ====== Validation: VerifyNewPasswordandConfirmed ===========
+  id: 47511222067775275
+  identification: 
+    name: VerifyNewPasswordandConfirmed
+
+  execution: 
+    sequence: 30
+
+  validation: 
+    type: Expression
+    language: PL/SQL
+    pl/sql-expression: ':p9998_new_password = :p9998_new_password_confirm'
+    always-execute: false
+
+  error: 
+    error-message: New password do not match!
+    display-location: Inline with Field and in Notification
+    associated-item: P9998_NEW_PASSWORD # 46940643075827230
+
+processes: 
+- # ====== Process: ChangePassword =============================
+  id: 46941241746827236
+  identification: 
+    name: ChangePassword
+    type: Execute Code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      -- when password is changed by the user, the EXPIRED status will be set to N, so user can login with newly set password
+      update sp_accounts 
+      set password = apex_util.get_hash(apex_t_varchar2(upper(:p9998_username),:P9998_NEW_PASSWORD_CONFIRM),null), expired='N'
+      where sp_username=upper(:p9998_username);
+
+  execution: 
+    sequence: 10
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+branches: 
+- # ====== Branch: Go To Page 9999 =============================
+  id: 46941282542827237
+  identification: 
+    name: Go To Page 9999
+
+  execution: 
+    sequence: 10
+    point: After Processing
+
+  behavior: 
+    type: Page or URL (Redirect)
+    target: 
+      url: 'f?p=&APP_ID.:9999:&SESSION.::&DEBUG.:::&success_msg=#SUCCESS_MSG#'
+      page: 9999 # Login Page
+

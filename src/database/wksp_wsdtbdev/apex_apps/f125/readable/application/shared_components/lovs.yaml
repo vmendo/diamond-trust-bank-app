@@ -1,0 +1,75 @@
+---
+- # ====== List of Values: SP_ACCOUNTS.DOC_TYPE ================
+  id: 28325688477049638
+  identification: 
+    name: SP_ACCOUNTS.DOC_TYPE
+
+  subscription: 
+    version-number: 45692920237366
+
+  source: 
+    location: Static Values
+
+  entries: 
+  - # ====== Entry: Company Registration Certificate =============
+    id: 28326052384049636
+    entry: 
+      sequence: 1
+      display: Company Registration Certificate
+      return: CRC
+
+  - # ====== Entry: PIN Certificate ==============================
+    id: 28326416963049629
+    entry: 
+      sequence: 2
+      display: PIN Certificate
+      return: PC
+
+  - # ====== Entry: Tax Compliance ===============================
+    id: 28326851856049628
+    entry: 
+      sequence: 3
+      display: Tax Compliance
+      return: TC
+
+  - # ====== Entry: Professional Indemnity Insurance =============
+    id: 28327211484049626
+    entry: 
+      sequence: 4
+      display: Professional Indemnity Insurance
+      return: PII
+
+  - # ====== Entry: Bank Details =================================
+    id: 28327621155049625
+    entry: 
+      sequence: 5
+      display: Bank Details
+      return: BD
+
+  - # ====== Entry: Other ========================================
+    id: 28328022920049624
+    entry: 
+      sequence: 6
+      display: Other
+      return: OTH
+
+- # ====== List of Values: SP_ACCOUNTS.EMAIL ===================
+  id: 47635632634547875
+  identification: 
+    name: SP_ACCOUNTS.EMAIL
+
+  subscription: 
+    version-number: 45688659281948
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: SP_ACCOUNTS
+
+  column-mapping: 
+    return: ID
+    display: EMAIL
+    default-sort: EMAIL
+    sort-direction: Ascending (Nulls Last)
+

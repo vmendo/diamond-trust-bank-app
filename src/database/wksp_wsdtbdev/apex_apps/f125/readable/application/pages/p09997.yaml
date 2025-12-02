@@ -1,0 +1,276 @@
+---
+# ====== Page: ResetPasswordPage =============================
+id: 9997
+identification: 
+  name: ResetPasswordPage
+  alias: RESETPASSWORDPAGE
+  title: ResetPasswordPage
+
+appearance: 
+  page-mode: Normal
+  page-template: Login
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Is Public
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-meta-tags: false
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Reset Password ==============================
+  id: 46939600836827220
+  identification: 
+    name: Reset Password
+    type: Static Content
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Login
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  image: 
+    file-url: '#APP_FILES#icons/app-icon-512.png'
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+page-items: 
+- # ====== Page Item: P9997_USERNAME ===========================
+  id: 46939724450827221
+  identification: 
+    name: P9997_USERNAME
+    type: Text Field
+
+  label: 
+    label: Username
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 10
+    region: Reset Password # 46939600836827220
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: Reset =======================================
+  id: 46939862693827222
+  identification: 
+    button-name: Reset
+    label: Reset
+
+  layout: 
+    sequence: 20
+    region: Reset Password # 46939600836827220
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--stretch
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: Cancel ======================================
+  id: 46939872043827223
+  identification: 
+    button-name: Cancel
+    label: Cancel
+
+  layout: 
+    sequence: 30
+    region: Reset Password # 46939600836827220
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--stretch
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:9999:&SESSION.::&DEBUG.:::'
+      page: 9999 # Login Page
+
+    warn-on-unsaved-changes: Do Not Check
+
+processes: 
+- # ====== Process: CheckuserandGenerateNewPwd =================
+  id: 46941614265827240
+  identification: 
+    name: CheckuserandGenerateNewPwd
+    type: Execute Code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      declare
+          v_username varchar2(255);
+          v_email    varchar2(255);
+          
+          pwdstring varchar2(255);
+      
+      begin
+         -- check if the username already exists
+         select sp_username,email into v_username,v_email from sp_accounts where sp_username = upper(:P9997_USERNAME);
+         
+         :APP_PWD_ITEM := generate_random_pwd;
+      
+          pwdstring := apex_util.get_hash(apex_t_varchar2(upper(:P9997_USERNAME),:app_pwd_item),null);
+          
+          update sp_accounts
+          set password = pwdstring, expired='Y'
+          where sp_username = UPPER(:P9997_USERNAME);
+      
+          APEX_MAIL.SEND (
+          p_to            =>  v_email,
+          p_from          =>  'christophe.de.backer.ocp@gmail.com',
+          p_body          =>  'Your password has been reset. Password is '||:APP_PWD_ITEM||'. Needs to be changed upon next login.' ,
+          p_body_html     =>  'Your password has been reset. Password is <b>'||:APP_PWD_ITEM||'</b>. Needs to be changed upon next login.' ,  
+          p_subj          =>  'Password reset for '||:P9997_USERNAME);
+      
+          APEX_MAIL.PUSH_QUEUE;
+      
+      
+      exception
+      when no_data_found then
+          --exception handling and customized message if user should not exist
+          raise_application_error(-20001,upper(:P9997_USERNAME)||' doesn''t exists');
+          when others then
+          null;
+          end;
+
+  execution: 
+    sequence: 10
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  success-message: 
+    success-message: Check mail for reset password!!!
+
+  error: 
+    display-location: Inline in Notification
+
+branches: 
+- # ====== Branch: ChangePasswordAfterResettingPassword ========
+  id: 46941733310827241
+  identification: 
+    name: ChangePasswordAfterResettingPassword
+
+  execution: 
+    sequence: 10
+    point: After Processing
+
+  behavior: 
+    type: Page or URL (Redirect)
+    target: 
+      url: 'f?p=&APP_ID.:9998:&SESSION.::&DEBUG.:::&success_msg=#SUCCESS_MSG#'
+      page: 9998 # Change Password Page
+

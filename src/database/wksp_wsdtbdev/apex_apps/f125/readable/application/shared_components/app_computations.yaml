@@ -1,0 +1,17 @@
+---
+- # ====== Application Computation: APP_SP_ACCOUNT_ID_ITEM =====
+  id: 47695793734467140
+  identification: 
+    item-name: APP_SP_ACCOUNT_ID_ITEM
+
+  execution: 
+    sequence: 10
+    point: AFTER_LOGIN
+
+  computation: 
+    type: SQL Query (return single value)
+    sql-query: select id from sp_accounts where sp_username = upper('&APP_USER.');
+
+  subscription: 
+    version-number: 45688704566701
+

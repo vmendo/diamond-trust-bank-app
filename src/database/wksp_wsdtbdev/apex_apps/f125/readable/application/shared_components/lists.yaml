@@ -1,0 +1,153 @@
+---
+- # ====== List: Navigation Menu ===============================
+  id: 66506188160849807
+  identification: 
+    name: Navigation Menu
+
+  subscription: 
+    version-number: 45689396277571
+
+  source: 
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: SP Account Details ===========================
+    id: 47684947107518074
+    label: 
+      label: SP Account Details
+
+    icon: 
+      image/icon-css-classes: fa-table
+
+    layout: 
+      sequence: 20
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 3
+      - 4
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:3:&APP_SESSION.::&DEBUG.:::'
+        page: 3 # SP Account Details
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Home =========================================
+    id: 66517763060849655
+    label: 
+      label: Home
+
+    icon: 
+      image/icon-css-classes: fa-home
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:1:&APP_SESSION.::&DEBUG.:::'
+        page: 1 # Home
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+- # ====== List: Navigation Bar ================================
+  id: 66507297952849765
+  identification: 
+    name: Navigation Bar
+
+  subscription: 
+    version-number: 45684430856051
+
+  source: 
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: &APP_USER. ===================================
+    id: 66519242375849626
+    label: 
+      label: '&APP_USER.'
+
+    icon: 
+      image/icon-css-classes: fa-user
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: '#'
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      2.: has-username
+
+  - # ====== Entry: --- ==========================================
+    id: 66519821498849622
+    label: 
+      label: '---'
+
+    layout: 
+      sequence: 20
+      parent-entry: '&APP_USER.' # 66519242375849626
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: separator
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    server-side-condition: 
+      type: User is Authenticated (not public)
+
+  - # ====== Entry: Sign Out =====================================
+    id: 66520224667849621
+    label: 
+      label: Sign Out
+
+    icon: 
+      image/icon-css-classes: fa-sign-out
+
+    layout: 
+      sequence: 30
+      parent-entry: '&APP_USER.' # 66519242375849626
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: '&LOGOUT_URL.'
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    server-side-condition: 
+      type: User is Authenticated (not public)
+

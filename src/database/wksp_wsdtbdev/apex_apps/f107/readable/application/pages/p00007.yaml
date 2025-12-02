@@ -1,0 +1,2620 @@
+---
+# ====== Page: Documents Service Provider ====================
+id: 7
+identification: 
+  name: Documents Service Provider
+  alias: DOCUMENTS-SERVICE-PROVIDER
+  title: Documents Service Provider
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Service Provider Account Details ============
+  id: 31076061214474657
+  identification: 
+    name: Service Provider Account Details
+    type: Form
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: SP_ACCOUNT_DETAILS
+    include-rowid-column: false
+    order-by-clause: ID
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    edit: 
+      enabled: true
+      allowed-operations: 
+      - Add Row
+      - Update Row
+      - Delete Row
+      lost-update-type: Row Values
+
+- # ====== Region: Documents Service Provider ==================
+  id: 31100687984474527
+  identification: 
+    name: Documents Service Provider
+    type: Classic Report
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select ID,
+             ACCOUNT_ID,
+             sys.dbms_lob.getlength(FILE_DATA) as download_link,
+             FILE_NAME,
+             CREATED_ON,
+             CREATED_BY,
+             UPDATED_ON,
+             UPDATED_BY,
+             ROW_VERSION,
+             MIME_TYPE,
+             DOCUMENT_TYPE
+        from SP_ACCOUNT_DOCUMENTS
+       where ACCOUNT_ID = :P7_ACCOUNT_ID;
+      
+    page-items-to-submit: 
+    - P7_ACCOUNT_ID
+
+  order-by: 
+    type: None
+
+  layout: 
+    sequence: 40
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Interactive Report
+    template-options: 
+    - '#DEFAULT#'
+    - t-IRR-region--hideHeader js-addHiddenHeadingRoleDesc
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-side-condition: 
+    type: Item is NOT NULL
+    item: P7_ID
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    layout: 
+      number-of-rows-type: Static Value
+      number-of-rows: 15
+
+    appearance: 
+      template-type: Theme
+      template: Standard
+      template-options: 
+      - '#DEFAULT#'
+      - t-Report--altRowsDefault
+      - t-Report--rowHighlight
+
+    pagination: 
+      type: Row Ranges X to Y (with next and previous links)
+      display-position: Bottom - Right
+      partial-page-refresh: true
+
+    performance: 
+      lazy-loading: false
+
+    break-formatting: 
+      break-columns: No Break
+
+    advanced: 
+      strip-html: false
+      sort-nulls: Last
+
+    heading: 
+      type: Custom Headings
+
+    download: 
+      csv-export-enabled: false
+
+    printing: 
+      enabled: false
+
+  columns: 
+  - # ====== Column: ID ==========================================
+    id: 30370194646717212
+    identification: 
+      column-name: ID
+      type: Plain Text
+
+    heading: 
+      heading: Id
+      alignment: end
+
+    layout: 
+      sequence: 10
+      column-alignment: end
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: ACCOUNT_ID ==================================
+    id: 30370307956717213
+    identification: 
+      column-name: ACCOUNT_ID
+      type: Plain Text
+
+    heading: 
+      heading: Account Id
+      alignment: end
+
+    layout: 
+      sequence: 20
+      column-alignment: end
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: CREATED_ON ==================================
+    id: 31134774142440666
+    identification: 
+      column-name: CREATED_ON
+      type: Hidden
+
+    layout: 
+      sequence: 70
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: CREATED_BY ==================================
+    id: 31134786867440667
+    identification: 
+      column-name: CREATED_BY
+      type: Hidden
+
+    layout: 
+      sequence: 80
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: UPDATED_ON ==================================
+    id: 31134933429440668
+    identification: 
+      column-name: UPDATED_ON
+      type: Hidden
+
+    layout: 
+      sequence: 90
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: UPDATED_BY ==================================
+    id: 31135042741440669
+    identification: 
+      column-name: UPDATED_BY
+      type: Hidden
+
+    layout: 
+      sequence: 100
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: ROW_VERSION =================================
+    id: 31135163060440670
+    identification: 
+      column-name: ROW_VERSION
+      type: Hidden
+
+    layout: 
+      sequence: 110
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: MIME_TYPE ===================================
+    id: 31135205821440671
+    identification: 
+      column-name: MIME_TYPE
+      type: Hidden
+
+    layout: 
+      sequence: 50
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: DOCUMENT_TYPE ===============================
+    id: 31135356843440672
+    identification: 
+      column-name: DOCUMENT_TYPE
+      type: Plain Text
+
+    heading: 
+      heading: Document Type
+      alignment: start
+
+    layout: 
+      sequence: 60
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: DOWNLOAD_LINK ===============================
+    id: 31135452065440673
+    identification: 
+      column-name: DOWNLOAD_LINK
+      type: Download BLOB
+
+    heading: 
+      heading: Download Link
+      alignment: end
+
+    layout: 
+      sequence: 30
+      column-alignment: end
+
+    accessibility: 
+      value-identifies-row: false
+
+    appearance: 
+      view-file-as: Attachment
+
+    blob-attributes: 
+      table-owner: Parsing Schema
+      table-name: SP_ACCOUNT_DOCUMENTS
+      blob-column: FILE_DATA
+      primary-key-column-1: ID
+      mime-type-column: MIME_TYPE
+      filename-column: FILE_NAME
+      last-updated-column: UPDATED_ON
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+  - # ====== Column: FILE_NAME ===================================
+    id: 31135823416440677
+    identification: 
+      column-name: FILE_NAME
+      type: Plain Text
+
+    heading: 
+      heading: File Name
+      alignment: start
+
+    layout: 
+      sequence: 40
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+- # ====== Region: UploadedDocTypes ============================
+  id: 31139080519440710
+  identification: 
+    name: UploadedDocTypes
+    type: Static Content
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+page-items: 
+- # ====== Page Item: P7_ID ====================================
+  id: 31076287020474656
+  identification: 
+    name: P7_ID
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 10
+    region: Service Provider Account Details # 31076061214474657
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Service Provider Account Details # 31076061214474657
+    column: ID
+    data-type: NUMBER
+    query-only: true
+    primary-key: true
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Checksum Required - Session Level
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_ID_PREV ===============================
+  id: 31076699596474652
+  identification: 
+    name: P7_ID_PREV
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 20
+    region: Service Provider Account Details # 31076061214474657
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Checksum Required - Session Level
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_ID_NEXT ===============================
+  id: 31077146560474650
+  identification: 
+    name: P7_ID_NEXT
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 30
+    region: Service Provider Account Details # 31076061214474657
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Checksum Required - Session Level
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_ACCOUNT_ID ============================
+  id: 31077576827474645
+  identification: 
+    name: P7_ACCOUNT_ID
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 40
+    region: Service Provider Account Details # 31076061214474657
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Service Provider Account Details # 31076061214474657
+    column: ACCOUNT_ID
+    data-type: NUMBER
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_COMPANY_NAME ==========================
+  id: 31078233511474636
+  identification: 
+    name: P7_COMPANY_NAME
+    type: Text Field
+
+  label: 
+    label: Company Name
+    alignment: Right
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 50
+    region: Service Provider Account Details # 31076061214474657
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: false
+    maximum-length: 255
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Service Provider Account Details # 31076061214474657
+    column: COMPANY_NAME
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_CONTACT_PERSON ========================
+  id: 31078607164474634
+  identification: 
+    name: P7_CONTACT_PERSON
+    type: Text Field
+
+  label: 
+    label: Contact Person
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 60
+    region: Service Provider Account Details # 31076061214474657
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: false
+    maximum-length: 255
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Service Provider Account Details # 31076061214474657
+    column: CONTACT_PERSON
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_ADDRESS ===============================
+  id: 31078978022474632
+  identification: 
+    name: P7_ADDRESS
+    type: Text Field
+
+  label: 
+    label: Address
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 70
+    region: Service Provider Account Details # 31076061214474657
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 60
+
+  validation: 
+    value-required: false
+    maximum-length: 4000
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Service Provider Account Details # 31076061214474657
+    column: ADDRESS
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_PHONE =================================
+  id: 31079433501474630
+  identification: 
+    name: P7_PHONE
+    type: Text Field
+
+  label: 
+    label: Phone
+    alignment: Right
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 80
+    region: Service Provider Account Details # 31076061214474657
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: false
+    maximum-length: 255
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Service Provider Account Details # 31076061214474657
+    column: PHONE
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_EMAIL =================================
+  id: 31079875758474629
+  identification: 
+    name: P7_EMAIL
+    type: Text Field
+
+  label: 
+    label: Email
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 90
+    region: Service Provider Account Details # 31076061214474657
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: false
+    maximum-length: 255
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Service Provider Account Details # 31076061214474657
+    column: EMAIL
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_TAXPIN ================================
+  id: 31080205675474627
+  identification: 
+    name: P7_TAXPIN
+    type: Text Field
+
+  label: 
+    label: Taxpin
+    alignment: Right
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 100
+    region: Service Provider Account Details # 31076061214474657
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 32
+
+  validation: 
+    value-required: false
+    maximum-length: 255
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Service Provider Account Details # 31076061214474657
+    column: TAXPIN
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_CREATED_ON ============================
+  id: 31080590915474625
+  identification: 
+    name: P7_CREATED_ON
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 110
+    region: Service Provider Account Details # 31076061214474657
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Service Provider Account Details # 31076061214474657
+    column: CREATED_ON
+    data-type: DATE
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_CREATED_BY ============================
+  id: 31081053911474623
+  identification: 
+    name: P7_CREATED_BY
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 120
+    region: Service Provider Account Details # 31076061214474657
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Service Provider Account Details # 31076061214474657
+    column: CREATED_BY
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_UPDATED_ON ============================
+  id: 31081381680474621
+  identification: 
+    name: P7_UPDATED_ON
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 130
+    region: Service Provider Account Details # 31076061214474657
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Service Provider Account Details # 31076061214474657
+    column: UPDATED_ON
+    data-type: DATE
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_UPDATED_BY ============================
+  id: 31081803152474620
+  identification: 
+    name: P7_UPDATED_BY
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 140
+    region: Service Provider Account Details # 31076061214474657
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Service Provider Account Details # 31076061214474657
+    column: UPDATED_BY
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_ROW_VERSION ===========================
+  id: 31082204968474618
+  identification: 
+    name: P7_ROW_VERSION
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 150
+    region: Service Provider Account Details # 31076061214474657
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Service Provider Account Details # 31076061214474657
+    column: ROW_VERSION
+    data-type: NUMBER
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_ID_COUNT ==============================
+  id: 31087195817474594
+  identification: 
+    name: P7_ID_COUNT
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 160
+    region: Service Provider Account Details # 31076061214474657
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+  comments: 
+    comments: This item is needed for Get Next or Previous Primary Key Value process.
+
+- # ====== Page Item: P7_CRC ===================================
+  id: 31139218706440711
+  identification: 
+    name: P7_CRC
+    type: Checkbox
+
+  label: 
+    label: Comany Registration Certificate
+    alignment: Left
+
+  settings: 
+    use-defaults: true
+
+  layout: 
+    sequence: 10
+    region: UploadedDocTypes # 31139080519440710
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  read-only: 
+    type: Always
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_PII ===================================
+  id: 31139361170440712
+  identification: 
+    name: P7_PII
+    type: Checkbox
+
+  label: 
+    label: Professional Indemnity Insurance
+    alignment: Left
+
+  settings: 
+    use-defaults: true
+
+  layout: 
+    sequence: 20
+    region: UploadedDocTypes # 31139080519440710
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  read-only: 
+    type: Always
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_PC ====================================
+  id: 31139428035440713
+  identification: 
+    name: P7_PC
+    type: Checkbox
+
+  label: 
+    label: PIN Certificate
+    alignment: Left
+
+  settings: 
+    use-defaults: true
+
+  layout: 
+    sequence: 30
+    region: UploadedDocTypes # 31139080519440710
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  read-only: 
+    type: Always
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_TC ====================================
+  id: 31139572145440714
+  identification: 
+    name: P7_TC
+    type: Checkbox
+
+  label: 
+    label: Tax Certificate
+    alignment: Left
+
+  settings: 
+    use-defaults: true
+
+  layout: 
+    sequence: 40
+    region: UploadedDocTypes # 31139080519440710
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  read-only: 
+    type: Always
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_BD ====================================
+  id: 31139637272440715
+  identification: 
+    name: P7_BD
+    type: Checkbox
+
+  label: 
+    label: Bank Details
+    alignment: Left
+
+  settings: 
+    use-defaults: true
+
+  layout: 
+    sequence: 50
+    region: UploadedDocTypes # 31139080519440710
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  read-only: 
+    type: Always
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P7_OTHER =================================
+  id: 31268029168707666
+  identification: 
+    name: P7_OTHER
+    type: Checkbox
+
+  label: 
+    label: Other
+    alignment: Left
+
+  settings: 
+    use-defaults: true
+
+  layout: 
+    sequence: 60
+    region: UploadedDocTypes # 31139080519440710
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  read-only: 
+    type: Always
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: REJECT ======================================
+  id: 8517441283775448
+  identification: 
+    button-name: REJECT
+    label: Account can be rejected!
+
+  layout: 
+    sequence: 50
+    region: Service Provider Account Details # 31076061214474657
+    slot: CHANGE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--success
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+- # ====== Button: COMMENTS ====================================
+  id: 8518777789775462
+  identification: 
+    button-name: COMMENTS
+    label: Comments
+
+  layout: 
+    sequence: 60
+    region: Service Provider Account Details # 31076061214474657
+    slot: CHANGE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:8:&SESSION.::&DEBUG.:CR,8::'
+      page: 8 # Comments Page
+      clear-cache: CR,8
+
+    warn-on-unsaved-changes: Do Not Check
+
+  server-side-condition: 
+    type: Item is NOT NULL
+    item: P7_ID
+
+- # ====== Button: APPROVE =====================================
+  id: 8518972306775463
+  identification: 
+    button-name: APPROVE
+    label: Account can be approved!
+
+  layout: 
+    sequence: 40
+    region: Service Provider Account Details # 31076061214474657
+    slot: CHANGE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--danger
+    - t-Button--padRight
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+- # ====== Button: CANCEL ======================================
+  id: 31087497785474593
+  identification: 
+    button-name: CANCEL
+    label: Go Back
+
+  layout: 
+    sequence: 20
+    region: Service Provider Account Details # 31076061214474657
+    slot: CLOSE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:6:&APP_SESSION.::&DEBUG.:::'
+      page: 6 # Master Page Service Providers
+
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: DELETE ======================================
+  id: 31088100888474591
+  identification: 
+    button-name: DELETE
+    label: Delete
+
+  layout: 
+    sequence: 20
+    region: Service Provider Account Details # 31076061214474657
+    slot: DELETE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Submit Page
+    execute-validations: false
+    show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+    database-action: SQL DELETE action
+
+  confirmation: 
+    message: '&APP_TEXT$DELETE_MSG!RAW.'
+    style: Danger
+
+  server-side-condition: 
+    type: Item is NOT NULL
+    item: P7_ID
+
+  configuration: 
+    build-option: Commented Out # 31057564381538797
+
+- # ====== Button: SAVE ========================================
+  id: 31088501474474590
+  identification: 
+    button-name: SAVE
+    label: Apply Changes
+
+  layout: 
+    sequence: 30
+    region: Service Provider Account Details # 31076061214474657
+    slot: CLOSE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+    database-action: SQL UPDATE action
+
+  server-side-condition: 
+    type: Item is NOT NULL
+    item: P7_ID
+
+- # ====== Button: CREATE ======================================
+  id: 31088944737474588
+  identification: 
+    button-name: CREATE
+    label: Create
+
+  layout: 
+    sequence: 40
+    region: Service Provider Account Details # 31076061214474657
+    slot: CREATE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+    database-action: SQL INSERT action
+
+  server-side-condition: 
+    type: Item is NULL
+    item: P7_ID
+
+  configuration: 
+    build-option: Commented Out # 31057564381538797
+
+- # ====== Button: GET_PREVIOUS_ID =============================
+  id: 31089238979474588
+  identification: 
+    button-name: GET_PREVIOUS_ID
+    label: Previous
+
+  layout: 
+    sequence: 50
+    region: Service Provider Account Details # 31076061214474657
+    slot: PREVIOUS
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Icon
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    icon: fa-chevron-left
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+
+  server-side-condition: 
+    type: Item is NOT NULL
+    item: P7_ID_PREV
+
+  configuration: 
+    build-option: Commented Out # 31057564381538797
+
+  comments: 
+    comments: This button is needed for Get Next or Previous Primary Key Value process.
+
+- # ====== Button: GET_NEXT_ID =================================
+  id: 31089319632474588
+  identification: 
+    button-name: GET_NEXT_ID
+    label: Next
+
+  layout: 
+    sequence: 60
+    region: Service Provider Account Details # 31076061214474657
+    slot: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Icon
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    icon: fa-chevron-right
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+
+  server-side-condition: 
+    type: Item is NOT NULL
+    item: P7_ID_NEXT
+
+  configuration: 
+    build-option: Commented Out # 31057564381538797
+
+  comments: 
+    comments: This button is needed for Get Next or Previous Primary Key Value process.
+
+- # ====== Button: DownloadAllDocuments ========================
+  id: 31135497208440674
+  identification: 
+    button-name: DownloadAllDocuments
+    label: Download All Documents
+
+  layout: 
+    sequence: 10
+    region: Documents Service Provider # 31100687984474527
+    slot: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--pillStart
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+- # ====== Button: RESETACCOUNT ================================
+  id: 31136546471440684
+  identification: 
+    button-name: RESETACCOUNT
+    label: Reset Password
+
+  layout: 
+    sequence: 40
+    region: Service Provider Account Details # 31076061214474657
+    slot: CLOSE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+  server-side-condition: 
+    type: Item is NOT NULL
+    item: P7_ID
+
+- # ====== Button: LOCKACCOUNT =================================
+  id: 31136869015440687
+  identification: 
+    button-name: LOCKACCOUNT
+    label: Account can be locked!
+
+  layout: 
+    sequence: 50
+    region: Service Provider Account Details # 31076061214474657
+    slot: CLOSE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--success
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+- # ====== Button: UNLOCKACCOUNT ===============================
+  id: 31137197820440691
+  identification: 
+    button-name: UNLOCKACCOUNT
+    label: Account can be unlocked!
+
+  layout: 
+    sequence: 60
+    region: Service Provider Account Details # 31076061214474657
+    slot: CLOSE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--danger
+    - t-Button--padLeft
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+dynamic-actions: 
+- # ====== Dynamic Action: SHOW_APPROVE_BUTTON =================
+  id: 8509450358065338
+  identification: 
+    name: SHOW_APPROVE_BUTTON
+
+  execution: 
+    sequence: 1
+    event-scope: Static
+
+  when: 
+    event: Page Load
+
+  server-side-condition: 
+    type: Rows returned
+    sql-query: |
+      select 1 
+      from sp_accounts 
+      where account_is_approved in ('P','R') and id = :APP_SP_ACCOUNT_ID_ITEM;
+
+  actions: 
+  - # ====== Action: Show ========================================
+    id: 8509529928065339
+    identification: 
+      action: Show
+
+    affected-elements: 
+      selection-type: Button
+      button: APPROVE # 8518972306775463
+
+    execution: 
+      sequence: 10
+      event: SHOW_APPROVE_BUTTON # 8509450358065338
+      fire-when-event-result-is: True
+      fire-on-initialization: true
+
+  - # ====== Action: Hide ========================================
+    id: 8509934928065343
+    identification: 
+      action: Hide
+
+    affected-elements: 
+      selection-type: Button
+      button: REJECT # 8517441283775448
+
+    execution: 
+      sequence: 20
+      event: SHOW_APPROVE_BUTTON # 8509450358065338
+      fire-when-event-result-is: True
+      fire-on-initialization: true
+
+- # ====== Dynamic Action: SHOW_REJECT_BUTTON ==================
+  id: 8509680331065341
+  identification: 
+    name: SHOW_REJECT_BUTTON
+
+  execution: 
+    sequence: 5
+    event-scope: Static
+
+  when: 
+    event: Page Load
+
+  server-side-condition: 
+    type: Rows returned
+    sql-query: |
+      select 1 
+      from sp_accounts 
+      where account_is_approved in ('Y') and id = :APP_SP_ACCOUNT_ID_ITEM;
+
+  actions: 
+  - # ====== Action: Show ========================================
+    id: 8509801743065342
+    identification: 
+      action: Show
+
+    affected-elements: 
+      selection-type: Button
+      button: REJECT # 8517441283775448
+
+    execution: 
+      sequence: 10
+      event: SHOW_REJECT_BUTTON # 8509680331065341
+      fire-when-event-result-is: True
+      fire-on-initialization: true
+
+  - # ====== Action: Hide ========================================
+    id: 8510046977065344
+    identification: 
+      action: Hide
+
+    affected-elements: 
+      selection-type: Button
+      button: APPROVE # 8518972306775463
+
+    execution: 
+      sequence: 20
+      event: SHOW_REJECT_BUTTON # 8509680331065341
+      fire-when-event-result-is: True
+      fire-on-initialization: true
+
+- # ====== Dynamic Action: set_account_is_approved_column_da_1 =
+  id: 8517325155775447
+  identification: 
+    name: set_account_is_approved_column_da_1
+
+  execution: 
+    sequence: 100
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: REJECT # 8517441283775448
+
+  actions: 
+  - # ====== Action: Hide ========================================
+    id: 8510373129065347
+    identification: 
+      action: Hide
+
+    affected-elements: 
+      selection-type: Button
+      button: REJECT # 8517441283775448
+
+    execution: 
+      sequence: 20
+      event: set_account_is_approved_column_da_1 # 8517325155775447
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+  - # ====== Action: Show ========================================
+    id: 8510409344065348
+    identification: 
+      action: Show
+
+    affected-elements: 
+      selection-type: Button
+      button: APPROVE # 8518972306775463
+
+    execution: 
+      sequence: 30
+      event: set_account_is_approved_column_da_1 # 8517325155775447
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+  - # ====== Action: Execute Server-side Code ====================
+    id: 8517241956775446
+    identification: 
+      action: Execute Server-side Code
+
+    settings: 
+      language: PE.PROPERTY.SOURCE_SNIPPET_LANG.LOV.PLSQL.D
+      pl/sql-code: |
+        begin
+        
+        update sp_accounts
+        set account_is_approved = 'R'
+        where id = :APP_SP_ACCOUNT_ID_ITEM;
+        
+        insert into sp_account_comments (account_id, comment_date, comment_text, comment_username)
+        values (:app_sp_account_id_item, current_date, 'Account has been Rejected', upper('&APP_USER.'));
+        
+        end;
+        
+
+    execution: 
+      sequence: 10
+      event: set_account_is_approved_column_da_1 # 8517325155775447
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+      stop-execution-on-error: true
+      wait-for-result: true
+
+- # ====== Dynamic Action: set_account_is_approved_column_da ===
+  id: 8517623852775450
+  identification: 
+    name: set_account_is_approved_column_da
+
+  execution: 
+    sequence: 90
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: APPROVE # 8518972306775463
+
+  actions: 
+  - # ====== Action: Hide ========================================
+    id: 8510130624065345
+    identification: 
+      action: Hide
+
+    affected-elements: 
+      selection-type: Button
+      button: APPROVE # 8518972306775463
+
+    execution: 
+      sequence: 20
+      event: set_account_is_approved_column_da # 8517623852775450
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+  - # ====== Action: Show ========================================
+    id: 8510230977065346
+    identification: 
+      action: Show
+
+    affected-elements: 
+      selection-type: Button
+      button: REJECT # 8517441283775448
+
+    execution: 
+      sequence: 30
+      event: set_account_is_approved_column_da # 8517623852775450
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+  - # ====== Action: Execute Server-side Code ====================
+    id: 8517536989775449
+    identification: 
+      action: Execute Server-side Code
+
+    settings: 
+      language: PE.PROPERTY.SOURCE_SNIPPET_LANG.LOV.PLSQL.D
+      pl/sql-code: |
+        begin
+        update sp_accounts
+        set account_is_approved = 'Y'
+        where id = :APP_SP_ACCOUNT_ID_ITEM;
+        
+        insert into sp_account_comments (account_id, comment_date, comment_text, comment_username)
+        values (:app_sp_account_id_item, current_date, 'Account has been Approved', upper('&APP_USER.'));
+        
+        end;
+
+    execution: 
+      sequence: 10
+      event: set_account_is_approved_column_da # 8517623852775450
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+      stop-execution-on-error: true
+      wait-for-result: true
+
+- # ====== Dynamic Action: Downloadalldocs_DA ==================
+  id: 31135666580440675
+  identification: 
+    name: Downloadalldocs_DA
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: DownloadAllDocuments # 31135497208440674
+
+  actions: 
+  - # ====== Action: Download ====================================
+    id: 31135686907440676
+    identification: 
+      action: Download
+
+    settings: 
+      multiple-files: true
+      filename: documents.zip
+
+    source: 
+      sql-query: |2
+         select FILE_DATA,
+               FILE_NAME
+        from SP_ACCOUNT_DOCUMENTS
+        where ACCOUNT_ID = :APP_SP_ACCOUNT_ID_ITEM;
+
+    execution: 
+      sequence: 10
+      event: Downloadalldocs_DA # 31135666580440675
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: ExpireAccount_DA ====================
+  id: 31136644207440685
+  identification: 
+    name: ExpireAccount_DA
+
+  execution: 
+    sequence: 20
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: RESETACCOUNT # 31136546471440684
+
+  actions: 
+  - # ====== Action: Execute Server-side Code ====================
+    id: 31136765041440686
+    identification: 
+      action: Execute Server-side Code
+
+    settings: 
+      language: PE.PROPERTY.SOURCE_SNIPPET_LANG.LOV.PLSQL.D
+      pl/sql-code: |
+        update sp_accounts
+        set expired = 'Y'
+        where id = :APP_SP_ACCOUNT_ID_ITEM;
+        
+        
+
+    execution: 
+      sequence: 10
+      event: ExpireAccount_DA # 31136644207440685
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+      stop-execution-on-error: true
+      wait-for-result: true
+
+  - # ====== Action: Confirm =====================================
+    id: 31268245501707668
+    identification: 
+      action: Confirm
+
+    settings: 
+      message: Password has been reset for this account!!!
+      style: Success
+      icon: fa-envelope-bookmark
+
+    execution: 
+      sequence: 20
+      event: ExpireAccount_DA # 31136644207440685
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: LockAccount_DA ======================
+  id: 31136928349440688
+  identification: 
+    name: LockAccount_DA
+
+  execution: 
+    sequence: 30
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: LOCKACCOUNT # 31136869015440687
+
+  actions: 
+  - # ====== Action: Execute Server-side Code ====================
+    id: 31136979422440689
+    identification: 
+      action: Execute Server-side Code
+
+    settings: 
+      language: PE.PROPERTY.SOURCE_SNIPPET_LANG.LOV.PLSQL.D
+      pl/sql-code: |
+        update sp_accounts
+        set locked_account = 'Y'
+        where id = :APP_SP_ACCOUNT_ID_ITEM;
+        
+        
+
+    execution: 
+      sequence: 10
+      event: LockAccount_DA # 31136928349440688
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+      stop-execution-on-error: true
+      wait-for-result: true
+
+  - # ====== Action: Hide ========================================
+    id: 31137144463440690
+    identification: 
+      action: Hide
+
+    affected-elements: 
+      selection-type: Button
+      button: LOCKACCOUNT # 31136869015440687
+
+    execution: 
+      sequence: 20
+      event: LockAccount_DA # 31136928349440688
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+  - # ====== Action: Show ========================================
+    id: 31137582957440695
+    identification: 
+      action: Show
+
+    affected-elements: 
+      selection-type: Button
+      button: UNLOCKACCOUNT # 31137197820440691
+
+    execution: 
+      sequence: 30
+      event: LockAccount_DA # 31136928349440688
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: UnLockAccount_DA ====================
+  id: 31137293992440692
+  identification: 
+    name: UnLockAccount_DA
+
+  execution: 
+    sequence: 40
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: UNLOCKACCOUNT # 31137197820440691
+
+  actions: 
+  - # ====== Action: Execute Server-side Code ====================
+    id: 31137400334440693
+    identification: 
+      action: Execute Server-side Code
+
+    settings: 
+      language: PE.PROPERTY.SOURCE_SNIPPET_LANG.LOV.PLSQL.D
+      pl/sql-code: |
+        update sp_accounts
+        set locked_account = 'N'
+        where id = :APP_SP_ACCOUNT_ID_ITEM;
+        
+        
+
+    execution: 
+      sequence: 10
+      event: UnLockAccount_DA # 31137293992440692
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+      stop-execution-on-error: true
+      wait-for-result: true
+
+  - # ====== Action: Hide ========================================
+    id: 31137519569440694
+    identification: 
+      action: Hide
+
+    affected-elements: 
+      selection-type: Button
+      button: UNLOCKACCOUNT # 31137197820440691
+
+    execution: 
+      sequence: 20
+      event: UnLockAccount_DA # 31137293992440692
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+  - # ====== Action: Show ========================================
+    id: 31137700343440696
+    identification: 
+      action: Show
+
+    affected-elements: 
+      selection-type: Button
+      button: LOCKACCOUNT # 31136869015440687
+
+    execution: 
+      sequence: 30
+      event: UnLockAccount_DA # 31137293992440692
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: SHOW_LOCKED_UNLOCKED_BUTTONS_1 ======
+  id: 31137806164440697
+  identification: 
+    name: SHOW_LOCKED_UNLOCKED_BUTTONS_1
+
+  execution: 
+    sequence: 50
+    event-scope: Static
+
+  when: 
+    event: Page Load
+
+  server-side-condition: 
+    type: Rows returned
+    sql-query: "select 1 from sp_accounts where locked_account='N' and id = :APP_SP_ACCOUNT_ID_ITEM;"
+
+  actions: 
+  - # ====== Action: Show ========================================
+    id: 31137892634440698
+    identification: 
+      action: Show
+
+    affected-elements: 
+      selection-type: Button
+      button: LOCKACCOUNT # 31136869015440687
+
+    execution: 
+      sequence: 10
+      event: SHOW_LOCKED_UNLOCKED_BUTTONS_1 # 31137806164440697
+      fire-when-event-result-is: True
+      fire-on-initialization: true
+
+  - # ====== Action: Hide ========================================
+    id: 31138005839440699
+    identification: 
+      action: Hide
+
+    affected-elements: 
+      selection-type: Button
+      button: UNLOCKACCOUNT # 31137197820440691
+
+    execution: 
+      sequence: 20
+      event: SHOW_LOCKED_UNLOCKED_BUTTONS_1 # 31137806164440697
+      fire-when-event-result-is: True
+      fire-on-initialization: true
+
+- # ====== Dynamic Action: SHOW_LOCKED_UNLOCKED_BUTTONS_2 ======
+  id: 31138717700440706
+  identification: 
+    name: SHOW_LOCKED_UNLOCKED_BUTTONS_2
+
+  execution: 
+    sequence: 60
+    event-scope: Static
+
+  when: 
+    event: Page Load
+
+  server-side-condition: 
+    type: No Rows returned
+    sql-query: "select 1 from sp_accounts where locked_account='N' and id = :APP_SP_ACCOUNT_ID_ITEM;"
+
+  actions: 
+  - # ====== Action: Show ========================================
+    id: 31138868330440707
+    identification: 
+      action: Show
+
+    affected-elements: 
+      selection-type: Button
+      button: UNLOCKACCOUNT # 31137197820440691
+
+    execution: 
+      sequence: 10
+      event: SHOW_LOCKED_UNLOCKED_BUTTONS_2 # 31138717700440706
+      fire-when-event-result-is: True
+      fire-on-initialization: true
+
+  - # ====== Action: Hide ========================================
+    id: 31138925786440708
+    identification: 
+      action: Hide
+
+    affected-elements: 
+      selection-type: Button
+      button: LOCKACCOUNT # 31136869015440687
+
+    execution: 
+      sequence: 20
+      event: SHOW_LOCKED_UNLOCKED_BUTTONS_2 # 31138717700440706
+      fire-when-event-result-is: True
+      fire-on-initialization: true
+
+processes: 
+- # ====== Process: Initialize form Form on SP_ACCOUNT_DETAILS =
+  id: 31091355079474580
+  identification: 
+    name: Initialize form Form on SP_ACCOUNT_DETAILS
+    type: Form - Initialization
+    execution-chain: None
+    form-region: Service Provider Account Details # 31076061214474657
+
+  settings: 
+    next-primary-key-item(s): 
+    - P7_ID_NEXT
+    previous-primary-key-item(s): 
+    - P7_ID_PREV
+    current-row/total-item: P7_ID_COUNT
+
+  execution: 
+    sequence: 10
+    point: Before Header
+    run-process: Once Per Page Visit (default)
+
+- # ====== Process: Process form Form on SP_ACCOUNT_DETAILS ====
+  id: 31091733689474578
+  identification: 
+    name: Process form Form on SP_ACCOUNT_DETAILS
+    type: Form - Automatic Row Processing (DML)
+    execution-chain: None
+    form-region: Service Provider Account Details # 31076061214474657
+
+  settings: 
+    target-type: Region Source
+    prevent-lost-updates: true
+    lock-row: Yes
+    return-primary-key(s)-after-insert: true
+
+  execution: 
+    sequence: 10
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+- # ====== Process: set Checkboxes =============================
+  id: 31139011244440709
+  identification: 
+    name: set Checkboxes
+    type: Execute Code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      --resetting checkboxes at page rendering
+      :p7_CRC := 'N';
+      :p7_PC := 'N';
+      :p7_TC := 'N';
+      :p7_PII := 'N';
+      :p7_BD := 'N';
+      :p7_OTHER := 'N';
+      
+      -- setting checkboxes
+      
+      for c in (select distinct document_type from sp_account_documents  where ACCOUNT_ID = :P7_ACCOUNT_ID) loop
+      
+          case c.document_type 
+              when 'CRC'  then :p7_CRC := 'Y';
+              when 'PC'   then :p7_PC := 'Y';
+              when 'TC'   then :p7_TC := 'Y';
+              when 'PII'  then :p7_PII := 'Y';
+              when 'BD'   then :p7_BD := 'Y';
+              when 'OTH'  then :p7_OTHER := 'Y';
+              end case;
+      
+      end loop;
+
+  execution: 
+    sequence: 20
+    point: Before Header
+    run-process: Once Per Page Visit (default)
+
+branches: 
+- # ====== Branch: Go To Page 7 ================================
+  id: 31090154265474584
+  identification: 
+    name: Go To Page 7
+
+  execution: 
+    sequence: 1
+    point: After Processing
+
+  behavior: 
+    type: Page or URL (Redirect)
+    target: 
+      url: 'f?p=&APP_ID.:7:&APP_SESSION.::&DEBUG.::P7_ID:&P7_ID_NEXT.'
+      page: 7 # Documents Service Provider
+      values: 
+        p7_id: '&P7_ID_NEXT.'
+
+  server-side-condition: 
+    when-button-pressed: GET_NEXT_ID # 31089319632474588
+
+  configuration: 
+    build-option: Commented Out # 31057564381538797
+
+  comments: 
+    comments: This button is needed for Get Next or Previous Primary Key Value process.
+
+- # ====== Branch: Go To Page 7 ================================
+  id: 31090530658474582
+  identification: 
+    name: Go To Page 7
+
+  execution: 
+    sequence: 1
+    point: After Processing
+
+  behavior: 
+    type: Page or URL (Redirect)
+    target: 
+      url: 'f?p=&APP_ID.:7:&APP_SESSION.::&DEBUG.::P7_ID:&P7_ID_PREV.'
+      page: 7 # Documents Service Provider
+      values: 
+        p7_id: '&P7_ID_PREV.'
+
+  server-side-condition: 
+    when-button-pressed: GET_PREVIOUS_ID # 31089238979474588
+
+  configuration: 
+    build-option: Commented Out # 31057564381538797
+
+  comments: 
+    comments: This button is needed for Get Next or Previous Primary Key Value process.
+
+- # ====== Branch: Go To Page 6 ================================
+  id: 31090872687474581
+  identification: 
+    name: Go To Page 6
+
+  execution: 
+    sequence: 1
+    point: After Processing
+
+  behavior: 
+    type: Page or URL (Redirect)
+    target: 
+      url: 'f?p=&APP_ID.:6:&APP_SESSION.::&DEBUG.:::&success_msg=#SUCCESS_MSG#'
+      page: 6 # Master Page Service Providers
+
