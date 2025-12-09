@@ -1,0 +1,196 @@
+---
+# ====== Page: Home ==========================================
+id: 1
+identification: 
+  name: Home
+  alias: HOME
+  title: Diamond Trust Bank
+
+appearance: 
+  page-mode: Normal
+  page-template: Minimal (No Navigation)
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+css: 
+  inline: |
+    #RegisterNewUser .t-Button-label {
+        font-weight: bold;
+        font-size: 30px;
+    }
+    
+    #Login .t-Button-label {
+        font-weight: bold;
+        font-size: 30px;
+    }
+
+security: 
+  authentication: Page Is Public
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-meta-tags: false
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: ButtonRegion ================================
+  id: 66119214150114913
+  identification: 
+    name: ButtonRegion
+    type: Static Content
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: None
+    render-components: Above Content
+
+  advanced: 
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+buttons: 
+- # ====== Button: RegisterNewUser =============================
+  id: 66118955061114911
+  identification: 
+    button-name: RegisterNewUser
+    label: Registration as Service Provider
+
+  layout: 
+    sequence: 10
+    region: ButtonRegion # 66119214150114913
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text with Icon
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--iconRight
+    - t-Button--stretch
+    css-classes: 
+    - '#bold-button-text#'
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:2:&SESSION.::&DEBUG.:::'
+      page: 2 # RegistrationForm
+
+    warn-on-unsaved-changes: Do Not Check
+
+  advanced: 
+    static-id: RegisterNewUser
+
+- # ====== Button: Login =======================================
+  id: 66119043046114912
+  identification: 
+    button-name: Login
+    label: Login as Service Provider
+
+  layout: 
+    sequence: 30
+    region: ButtonRegion # 66119214150114913
+    slot: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text with Icon
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--iconRight
+    - t-Button--stretch
+    icon: '&APP_FILES#icons/app-icon-512.png.'
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:3:&SESSION.::&DEBUG.:::'
+      page: 3 # SP Account Details
+
+    warn-on-unsaved-changes: Do Not Check
+
+  advanced: 
+    static-id: Login
+
+dynamic-actions: 
+- # ====== Dynamic Action: SetIconForButton ====================
+  id: 66119327509114914
+  identification: 
+    name: SetIconForButton
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+
+  when: 
+    event: Page Load
+
+  actions: 
+  - # ====== Action: Execute JavaScript Code =====================
+    id: 66119418233114915
+    identification: 
+      action: Execute JavaScript Code
+
+    settings: 
+      code: |
+        $("#RegisterNewUser span.t-Button-label").prepend(
+          "<img src='" + apex.util.applyTemplate('#APP_FILES#icons/app-icon-512.png') + 
+          "' style='width:160px;height:160x;vertical-align:middle;margin-right:5px;' alt='icon'> "
+        );
+        
+        $("#Login span.t-Button-label").prepend(
+          "<img src='" + apex.util.applyTemplate('#APP_FILES#icons/app-icon-512.png') + 
+          "' style='width:160px;height:160x;vertical-align:middle;margin-right:5px;' alt='icon'> "
+        );
+
+    execution: 
+      sequence: 10
+      event: SetIconForButton # 66119327509114914
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
