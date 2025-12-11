@@ -1,0 +1,35 @@
+---
+- # ====== Breadcrumb: Breadcrumb ==============================
+  id: 66505657645849813
+  identification: 
+    name: Breadcrumb
+
+  entries: 
+  - # ====== Entry: SP Account Details ===========================
+    id: 47692543108518042
+    identification: 
+      name: SP Account Details
+      page-number: 3
+
+    execution: 
+      sequence: 10
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:3:&APP_SESSION.::&DEBUG.:::'
+        page: 3 # SP Account Details
+
+  - # ====== Entry: Home =========================================
+    id: 66505931493849812
+    identification: 
+      name: Home
+      page-number: 1
+
+    execution: 
+      sequence: 10
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:1:&APP_SESSION.::&DEBUG.:::'
+        page: 1 # Home
+
